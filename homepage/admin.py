@@ -16,7 +16,7 @@ class FoodAdmin(admin.ModelAdmin):
 
 class PaymentAdmin(admin.ModelAdmin):
     list_display = ("P_id", "paymentOptions", "pickup")
-q
+
 
 admin.site.register(Order, OrderAdmin)
 admin.site.register(Food, FoodAdmin)
