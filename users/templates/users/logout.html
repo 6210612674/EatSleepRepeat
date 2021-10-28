@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<head>
+    <title>Registration</title>
+</head>
+
+<form action="{% url 'logout' %}" method = "POST" class="form-group">
+    {%csrf_token%}
+    {{ form }}
+    
+    <button type= "submit">Logout</button>
+</form>

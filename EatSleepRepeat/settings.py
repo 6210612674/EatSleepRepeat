@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-m)*5phz0$qn(7$23-ud@$3@s^*cg&&5=i9qw8x5dgh^z$e1d!0
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
+AUTH_USER_MODEL = 'users.User'
 
 # Application definition
 
@@ -39,7 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'about',
+    'homepage',
+    'users',
+    'crispy_forms',
+    'widget_tweaks',
 ]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -128,8 +134,9 @@ STATICFILES_DIRS = ( os.path.join(BASE_DIR,'static'), )
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-import django_heroku
-django_heroku.settings(locals())
+#import django_heroku
+#django_heroku.settings(locals())
 
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 

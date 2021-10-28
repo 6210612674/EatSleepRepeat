@@ -1,0 +1,20 @@
+{% extends "homepage/layout.html" %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static '/home/css/customer_account.css' %}">
+{% block body %}
+    
+    <h1> Welcome, {{ request.user.first_name }}</h1>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    
+  
+       <div class="w3-panel w3-card">
+         <p>Username: {{ request.user.username }}</p>
+         <p>Email: {{ request.user.email }}</p>
+         <p>Sex: {{ request.user.sex }}</p>
+         <p>Address: {{ request.user.address }}</p>
+    </div>
+   
+   
+
+{% endblock %}

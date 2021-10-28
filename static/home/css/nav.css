@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&display=swap');
+
+.navbar {
+  position: sticky;
+  width: 100% !important;
+  top: 0;
+}
+
+.navbar-nav {
+    margin-left: 70%;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: #FFEDDC !important;
+  font-family: 'Sora', sans-serif;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  color:#A08985;
+}
+
+.form-search {
+  display: block;
+  width: 100%;
+  padding:.375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 10rem;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
+}
+
+.btn {
+  border: none;
+  background: #EE5932 !important;
+}
+
+.dropdown-item {
+  color: #292020 !important;
+}
