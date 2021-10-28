@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'homepage',
     'users',
     'crispy_forms',
-    'widget_tweaks',
 ]
 
 
