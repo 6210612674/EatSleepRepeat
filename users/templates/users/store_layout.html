@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+
+    <head>
+        <title>Eat Sleep Repeat</title>
+        <link rel="stylesheet" type="text/css" href="{% static '/home/css/nav.css' %}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+
+    </head>
+
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #E13D20">
+
+      <a class="navbar-brand" href="/">
+        <img src="/static/home/img/smallsmall_logo.png" >
+      </a>
+
+      <form class="d-flex">
+        <input class="form-search" type="search" placeholder="Search" aria-label="Search">
+        <button type="button" class="btn btn-outline-light"><img src="https://cdn-icons.flaticon.com/png/512/1054/premium/1054056.png?token=exp=1635434387~hmac=03eaca90b976341a5bbf96af615e7782" width="30" height="30"></button>
+      </form>
+
+      {% if user.is_authenticated and user.is_customer == False %}
+
+        <li class="nav-item dropdown">
+          <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="{% url 'users:store' %}">My account</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{% url 'users:logout' %}">Log out</a></li>
+          </ul>
+        </li>
+
+      {% else %}
+
+      <div class="container-fluid">
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="active" href="{% url 'about:index' %}">About</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">Sign up As</a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="users/register/store_register/">Store</a></li>
+                <li><a class="dropdown-item" href="users/register/customer_register">Customer</a></li>
+                <li><hr class="dropdown-divider"></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="active" href="users/login">Sign in</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      {% endif %}
+
+    </nav>
+    
+    <a href="{% url 'users:store' %}"><button>My Detail</button></a>
+    <a href="{% url 'storepage:addfood' %}"><button>Add Menu</button></a>
+    <a href="{% url 'storepage:statistic' %}"><button>Statistic</button></a>
+    <a href="{% url 'storepage:receive' %}"><button>Receive</button></a>
+
+    <body>
+        {% block body %}
+        {% endblock %}
+    </body>
+
+</html>
+

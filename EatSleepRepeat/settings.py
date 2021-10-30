@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'homepage',
     'users',
     'crispy_forms',
+    'storepage',
 ]
 
 

@@ -23,23 +23,25 @@
   background: #EE5932 !important;
 }
 
-.se {
-  margin: auto;
-  width: 50%;
-  padding: 3%;
-  align-items: center;
-}
-
 #map {
-  position: absolute;
+  position: relative;
   width: 1078px;
   height: 324px;
   align-items: center;
+  margin-bottom: 50px;
 }
 
-.ce {
+.location-box {
    align-items: center;
    margin: auto;
+   margin-top: 3rem;
    width: 1078px;
+
+}
+
+.store-list {
+ margin: auto;
+   width: 50%;
+   padding: 3%;
 
 }|

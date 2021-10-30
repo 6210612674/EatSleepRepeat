@@ -20,3 +20,4 @@ class Customer(models.Model):
 class Store(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE, primary_key = True)
     location = models.CharField(max_length=100)
+    store_name = models.CharField(max_length=100,default="0")

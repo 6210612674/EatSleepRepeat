@@ -6,12 +6,9 @@ from django.contrib import messages
 from django.views.generic import CreateView
 from .form import CustomerSignUpForm, StoreSignUpForm
 from django.contrib.auth.forms import AuthenticationForm
-from .models import User
+from .models import *
 
 # Create your views here.
-
-def register(request):
-    return render(request, '../templates/users/register.html')
 
 class customer_register(CreateView):
     model = User
@@ -20,8 +17,8 @@ class customer_register(CreateView):
 
     def form_valid(self, form):
         user = form.save()
-        login(self.request, user)
-        return redirect('/')
+        return redirect('/users/login')
+
 
 class store_register(CreateView):
     model = User
@@ -30,8 +27,7 @@ class store_register(CreateView):
 
     def form_valid(self, form):
         user = form.save()
-        login(self.request, user)
-        return redirect('/')
+        return redirect('/users/login')
 
 
 def login_request(request):
@@ -52,6 +48,7 @@ def login_request(request):
 
     context={'form':AuthenticationForm()})
 
+
 def logout_view(request):
     logout(request)
     return redirect("homepage:index")
@@ -64,10 +61,10 @@ def customer_view(request):
     return render(request, "users/customer_account.html")
 
 
-
 def store_view(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("users:login"))
 
     return render(request, "users/store_account.html")
+
 

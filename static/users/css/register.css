@@ -85,7 +85,6 @@ button.ghost {
 
 form {
 	background-color: #FFFFFF;
-	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
@@ -108,6 +107,7 @@ input {
 			0 10px 10px rgba(0,0,0,0.22);
 	position: relative;
 	overflow: hidden;
+	overflow-y: scroll;
 	width: 768px;
 	max-width: 100%;
 	min-height: 480px;

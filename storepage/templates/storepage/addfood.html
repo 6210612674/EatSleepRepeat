@@ -1,0 +1,49 @@
+{% extends "homepage/layout.html" %}
+{% load static %}
+
+{% block body %}
+<html>
+    <link rel="stylesheet" type="text/css" href="{% static '/store/css/addfood.css' %}">
+
+    <a href="{% url 'users:store' %}"><button>My Detail</button></a>
+    <a href="{% url 'storepage:addfood' %}"><button>Add Menu</button></a>
+    <a href="{% url 'storepage:statistic' %}"><button>Statistic</button></a>
+
+    <h1>Add Food</h1>
+
+    <form method="POST" action="{% url 'storepage:addfood' %}">
+        {% csrf_token %}
+        <label>Food Name:</label>
+        <input type="text" name="foodname"><br />
+        <label>Price:</label>
+        <input type="number" name="price"><br />
+
+            <label for="type">Type:</label>
+            <select name="type" id="type">
+            <option value=1>MainCourse</option>
+            <option value=2>Appetizer</option>
+            <option value=3>Dessert</option>
+            <option value=4>Drink</option>
+          </select>
+          <br/>
+
+
+        <label>Description:</label>
+        <input type="text" name="description"><br />
+
+        <input type="submit" value="Add" class="apply-button"/>
+
+    </form>
+
+    <ul>
+    <h1> Menu List</h1>
+
+    {% for name in foods %}
+
+        <li>{{ name.F_name }}</li>
+
+    {% endfor %}
+
+    </ul>
+</html>
+{% endblock %}

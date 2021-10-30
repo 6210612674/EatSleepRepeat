@@ -1,0 +1,7 @@
+.add-box {
+	display: flex;
+}
+
+.add-box input {
+    width: 50;
+}

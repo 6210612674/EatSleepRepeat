@@ -30,6 +30,7 @@ class CustomerSignUpForm(UserCreationForm):
         return user
 
 class StoreSignUpForm(UserCreationForm):
+    store_name = forms.CharField(required=True)
     first_name = forms.CharField(required=True)
     last_name = forms.CharField(required=True)
     email = forms.EmailField()
@@ -53,6 +54,7 @@ class StoreSignUpForm(UserCreationForm):
         user.save()
         store = Store.objects.create(user=user)
         store.location=self.cleaned_data.get('location')
+        store.store_name=self.cleaned_data.get('store_name')
         store.save()
         return user
 
@@ -77,4 +79,5 @@ class StoreAddFood(forms.Form):
         'size': '10'
     })
 )
+
 '''

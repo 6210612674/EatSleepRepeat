@@ -1,0 +1,18 @@
+{% extends "homepage/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+    <a href="{% url 'users:store' %}"><button>My Detail</button></a>
+    <a href="{% url 'storepage:addfood' %}"><button>Add Menu</button></a>
+    <a href="{% url 'storepage:statistic' %}"><button>Statistic</button></a>
+
+
+
+    <h1>Statistic</h1>
+    <li>view: </li>
+    <li>comment: </li>
+
+
+
+{% endblock %}

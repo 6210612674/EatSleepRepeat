@@ -1,20 +1,34 @@
 {% extends "homepage/layout.html" %}
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static '/home/css/customer_account.css' %}">
+
 {% block body %}
+<html>
     
+<link rel="stylesheet" type="text/css" href="{% static '/users/css/sidenav.css' %}">
+
     <h1> Welcome, {{ request.user.first_name }}</h1>
+    
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    
-  
-       <div class="w3-panel w3-card">
-         <p>Username: {{ request.user.username }}</p>
-         <p>Email: {{ request.user.email }}</p>
-         <p>Sex: {{ request.user.sex }}</p>
-         <p>Address: {{ request.user.address }}</p>
+        
+    <div class ="container">
+        <div><button class="button-os"><a href="{% url 'users:customer' %}">My Detail</a></button></div>
+        
+        <div><button class="button-os"><a href="{% url 'users:customer' %}">Orders</a></button></div>
+        
+        <div><button class="button-os"><a href="{% url 'users:logout' %}">Log out</a></button></div>
     </div>
-   
-   
-
+     <!--
+     <a href="{% url 'users:customer' %}"><button class="btn btn-primary btn-lg">My Detail</button></a>
+        <a href="{% url 'users:logout' %}"><button class="btn btn-primary btn-lg">logout</button></a>
+        <div class="w3-panel w3-card">
+            <p>Username: {{ request.user.username }}</p>
+            <p>Email: {{ request.user.email }}</p>
+            <p>Sex: {{ request.user.sex }}</p>
+            <p>Address: {{ request.user.customer.address }}</p>
+    
+        </div>
+    
+       -->
+</html>
 {% endblock %}

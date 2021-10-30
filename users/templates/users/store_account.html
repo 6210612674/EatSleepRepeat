@@ -3,11 +3,23 @@
 
 {% block body %}
 
-    <h1> Welcome, {{ request.user.first_name }}</h1>
+    <title>{{ request.user.store.store_name }}</title>
+
+    <a href="{% url 'users:store' %}"><button>My Detail</button></a>
+    <a href="{% url 'storepage:addfoodview' %}"><button>Add Menu</button></a>
+    <a href="{% url 'storepage:statistic' %}"><button>Statistic</button></a>
+
+
 
     <ul>
         <li>Username: {{ request.user.username }}</li>
         <li>Email: {{ request.user.email }}</li>
+        <li>Address: {{ request.user.store.location }}</li>
+        <li>Tel: {{ request.user.tel }}</li>
+        <li>Service Time: </li>
+        <li>Bank Acc.: </li>
+
+
     </ul>
 
 {% endblock %}
