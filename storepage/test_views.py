@@ -30,6 +30,12 @@ class StorepageViewTestCase(TestCase):
         response = c.get(reverse('storepage:addfood'))
         self.assertEqual (response.status_code, 302)
 
+    def test_addfood_view_page_notlogin(self):
+        c = Client()
+        response = c.get(reverse('storepage:addfood'))
+        self.assertEqual (response.status_code, 302)
+
+
     def test_statistic_view_page(self):
 
         c = Client()

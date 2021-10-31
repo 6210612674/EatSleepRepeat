@@ -23,13 +23,13 @@ def statistic_view(request):
 
     return render(request, "storepage/statistic.html")
 
-
+'''
 def comment_view(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("users:login"))
 
     return render(request, "storepage/comment.html")
-
+'''
 
 '''
 def storelist_view(request):
@@ -57,6 +57,8 @@ def storeitem(request, store_user):
     })
 
 def addfood(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse("users:login"))
 
     user = User.objects.get(username=request.user.username)
     if request.method == "POST":
