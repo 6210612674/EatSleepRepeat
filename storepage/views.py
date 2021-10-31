@@ -11,11 +11,11 @@ from homepage.models import *
 def addfood_view(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("users:login"))
-
+    user = User.objects.get(username=request.user.username)
     return render(request, "storepage/addfood.html",{
-        "foods": Food.objects.all()
-
+        "foods": Food.objects.filter(registered_store=user)
     })
+
 
 def statistic_view(request):
     if not request.user.is_authenticated:
@@ -55,13 +55,17 @@ def storeitem(request, store_user):
         "store": store,
         "foods": Food.objects.filter(registered_store=store)
     })
-'''
+
 def addfood(request):
+
+    user = User.objects.get(username=request.user.username)
     if request.method == "POST":
-        Food.objects.create(
+        food = Food.objects.create(
         F_name = request.POST['foodname'],
         price = request.POST['price'],
         category = request.POST['type'],
-        description = request.POST['description'])
-    return reverse("storepage:addfoodview")
-'''
+        description = request.POST['description'],
+        )
+        food.registered_store.add(user)
+        food.save()
+    return HttpResponseRedirect(reverse("storepage:addfoodview"))

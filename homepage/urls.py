@@ -6,6 +6,6 @@ app_name = "homepage"
 urlpatterns = [
     path('', views.index, name='index'),
     path('googlemap/', views.googlemap, name='googlemap'),
-    
+
 
 ]
