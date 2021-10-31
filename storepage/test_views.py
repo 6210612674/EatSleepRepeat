@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.db.models import Max
 from users.models import *
 from homepage.models import *
+csrf_client = Client(enforce_csrf_checks=True)
 
 class StorepageViewTestCase(TestCase):
 
@@ -36,11 +37,17 @@ class StorepageViewTestCase(TestCase):
         self.assertEqual (response.status_code, 302)
 
 
-    def test_statistic_view_page(self):
-
+    def test_statistic_view_page_without_auth(self):
         c = Client()
         response = c.get(reverse('storepage:statistic'))
         self.assertEqual (response.status_code, 302)
+
+    def test_statistic_view_page_with_auth(self):
+        userstore = User.objects.create(username="userstore1", password="1234", email="user@example.com", is_store=True)
+        c = Client()
+        c.force_login(userstore)
+        response = c.get(reverse('storepage:statistic'))
+        self.assertEqual (response.status_code, 200)
 
     def test_storeitem_view_page(self):
         userstore1 = User.objects.create(username="userstore1", password="1234", email="user@example.com", is_store=True)
@@ -49,3 +56,25 @@ class StorepageViewTestCase(TestCase):
         c = Client()
         response = c.get(reverse('storepage:storeitem', args=(userstore1.id,)))
         self.assertEqual (response.status_code, 200)
+
+    def test_addfoodview_view_page(self):
+        userstore = User.objects.create(username="userstore1", password="1234", email="user@example.com", is_store=True)
+
+        c = Client()
+        c.force_login(userstore)
+        response = c.get(reverse('storepage:addfoodview'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_addfoodview_view_page_notlogin(self):
+        c = Client()
+        response = c.get(reverse('storepage:addfoodview'))
+        self.assertEqual(response.status_code, 302)
+
+    def test_additemfood_with_auth(self):
+        user = User.objects.create(username="userstore1", password="1234", email="user@example.com", is_store=True)
+
+        c = Client()
+        c.force_login(user)
+        response = c.post(reverse('storepage:addfood'), {'foodname': 'krapra', 'price': 50.0,'type' : 1,'description' : 'aaa'})
+
+        self.assertEqual(response.status_code, 302)

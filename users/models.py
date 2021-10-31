@@ -10,9 +10,8 @@ class User(AbstractUser):
     last_name = models.CharField(max_length=100)
     tel = models.CharField(max_length=100)
     sex = models.CharField(max_length=10)
-    
-#ตุดยอด
-    
+
+
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE, primary_key = True)
     address = models.CharField(max_length=100)

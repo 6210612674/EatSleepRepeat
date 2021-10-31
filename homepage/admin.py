@@ -20,6 +20,5 @@ class PaymentAdmin(admin.ModelAdmin):
 
 admin.site.register(Order, OrderAdmin)
 admin.site.register(Food, FoodAdmin)
-admin.site.register(Payment, PaymentAdmin)
 
 

@@ -9,30 +9,20 @@ from .models import User
 class UserViewTestCase(TestCase):
 
     def setUp(self):
-
         User.objects.create(username="user1", password=make_password('1234'), email="user1@example.com")
 
-
-
-
     def test_login_view_with_authentication(self):
-
-
         c = Client()
         user = User.objects.get(username="user1")
         c.force_login(user)
         response = c.get(reverse('users:login'))
         self.assertEqual(response.status_code, 200)
 
-
     def test_login_view_without_authentication(self):
-
-
         c = Client()
         user = User.objects.get(username="user1")
         response = c.get(reverse('users:login'))
         self.assertEqual(response.status_code, 200)
-
 
     def test_login_success(self):
         c = Client()
@@ -43,7 +33,7 @@ class UserViewTestCase(TestCase):
     def test_login_unsuccess(self):
         c = Client()
         user = User.objects.get(username="user1")
-        response = c.post(reverse('users:login'), {'username': 'user1', 'password': '123'})
+        response = c.post(reverse('users:login'), {'username': '', 'password': ''})
         self.assertEqual(response.status_code, 200)
 
     def test_logout_success(self):
@@ -52,3 +42,29 @@ class UserViewTestCase(TestCase):
         c.force_login(user)
         response = c.post(reverse('users:logout'))
         self.assertEqual(response.status_code, 302)
+
+    def test_customer_view_without_auth(self):
+        user = User.objects.get(username='user1')
+        c = Client()
+        response = c.get(reverse('users:customer'))
+        self.assertEqual(response.status_code, 302)
+
+    def test_customer_view_with_auth(self):
+        user = User.objects.get(username='user1')
+        c = Client()
+        c.force_login(user)
+        response = c.get(reverse('users:customer'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_store_view_without_auth(self):
+        user = User.objects.get(username='user1')
+        c = Client()
+        response = c.get(reverse('users:store'))
+        self.assertEqual(response.status_code, 302)
+
+    def test_store_view_with_auth(self):
+        user = User.objects.get(username='user1')
+        c = Client()
+        c.force_login(user)
+        response = c.get(reverse('users:store'))
+        self.assertEqual(response.status_code, 200)
