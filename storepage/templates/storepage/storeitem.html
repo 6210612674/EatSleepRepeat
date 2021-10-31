@@ -4,11 +4,14 @@
 <body>
     <ul>
     <h1> Food List </h1>
-    
+
     {% for food in foods %}
             <li>{{ food.F_name }}</li>
+            <li>{{ food.price }}</li>
+            <li>{{ food.category }}</li>
+            <li>{{ food.description }}</li>
     {% endfor %}
-    
+
     </ul>
 </body>
 </html>
