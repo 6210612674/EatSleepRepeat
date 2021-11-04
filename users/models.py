@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.core.files.storage import FileSystemStorage
 
 # Create your models here.
 
@@ -9,7 +10,7 @@ class User(AbstractUser):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     tel = models.CharField(max_length=100)
-    sex = models.CharField(max_length=10)
+    gender = models.CharField(max_length=100)
 
 
 class Customer(models.Model):
@@ -19,4 +20,8 @@ class Customer(models.Model):
 class Store(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE, primary_key = True)
     location = models.CharField(max_length=100)
-    store_name = models.CharField(max_length=100,default="0")
+    store_name = models.CharField(max_length=100, default="0")
+    type_store  = models.CharField(max_length=100)
+    place = models.CharField(max_length=100)
+    location_url = models.CharField(max_length=100)
+    store_image = models.ImageField(upload_to='media/storeimg/', blank = True)

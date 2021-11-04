@@ -39,9 +39,34 @@
 
 }
 
-.store-list {
- margin: auto;
-   width: 50%;
-   padding: 3%;
+.store-container {
+  display: flex;
+  margin: auto;
+  width: 1078px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  text-decoration: none;
+  gap: 20px;
+}
 
-}|
+.store-link {
+  text-decoration: none;
+  font-family: 'Sora';
+  color: #fff;
+}
+
+.store-list {
+  width: 255px;
+  height: 170.33px;
+  background-color: aqua;
+  border-radius: 10px;
+}
+
+.item-container {
+  display: flex;
+  margin: auto;
+  width: 1078px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  text-decoration: none;
+}

@@ -134,10 +134,11 @@ STATICFILES_DIRS = ( os.path.join(BASE_DIR,'static'), )
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-import django_heroku
-django_heroku.settings(locals())
-
+#import django_heroku
+#django_heroku.settings(locals())
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
+MEDIA_URL = '/media/'
 
+MEDIA_ROOT = os.path.join(BASE_DIR,'')
