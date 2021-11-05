@@ -73,3 +73,11 @@ def addfood(request):
         food.registered_store.add(user)
         food.save()
     return HttpResponseRedirect(reverse("storepage:addfoodview"))
+
+
+def remove(request, F_id):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse("users:login"))
+    Food.objects.filter(F_id=F_id).delete()
+
+    return HttpResponseRedirect(reverse("storepage:addfoodview"))
