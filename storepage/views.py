@@ -67,7 +67,9 @@ def addfood(request):
         price = request.POST['price'],
         category = request.POST['type'],
         description = request.POST['description'],
+        food_image = request.FILES['foodimage'],
         )
+
         food.registered_store.add(user)
         food.save()
     return HttpResponseRedirect(reverse("storepage:addfoodview"))

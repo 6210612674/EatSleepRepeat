@@ -11,7 +11,7 @@
 
     <h1>Add Food</h1>
 
-    <form method="POST" action="{% url 'storepage:addfood' %}">
+    <form method="POST" action="{% url 'storepage:addfood' %}" enctype="multipart/form-data">
         {% csrf_token %}
         <label>Food Name:</label>
         <input type="text" name="foodname"><br />
@@ -27,6 +27,8 @@
           </select>
           <br/>
 
+        <label>Food Image</label>
+        <input type="file" name="foodimage"><br />
 
         <label>Description:</label>
         <input type="text" name="description"><br />
