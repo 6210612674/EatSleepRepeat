@@ -92,7 +92,7 @@ class StoreSignUpForm(UserCreationForm):
     type_store = forms.ChoiceField(choices = TYPE, required=True)
     place = forms.ChoiceField(choices = PLACE, required=True)
     location_url = forms.CharField(required=True)
-#    store_image = forms.ImageField()
+    store_image = forms.ImageField()
 
     class Meta(UserCreationForm.Meta):
         model = User
@@ -114,7 +114,7 @@ class StoreSignUpForm(UserCreationForm):
         store.type_store=self.cleaned_data.get('type_store')
         store.place=self.cleaned_data.get('place')
         store.location_url=self.cleaned_data.get('location_url')
-#        store.store_image=self.cleaned_data.get('store_image')
+        store.store_image=self.cleaned_data.get('store_image')
         store.save()
         return user
 

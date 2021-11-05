@@ -9,7 +9,7 @@
 
     <div class="container" id="container">
     	<div class="form-container sign-in-container">
-		    <form action="{% url 'users:store_register' %}" method = "POST" class="form-group">
+		    <form action="{% url 'users:store_register' %}" method = "POST" class="form-group" enctype="multipart/form-data">
                 <h1>Create Store Account</h1>
                 {%csrf_token%}
                 {{ form|crispy }}
