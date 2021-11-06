@@ -25,3 +25,4 @@ class Store(models.Model):
     place = models.CharField(max_length=100)
     location_url = models.CharField(max_length=100)
     store_image = models.ImageField(upload_to='media/storeimg/', blank = True)
+    favourite = models.ManyToManyField(User ,related_name = 'favourite',blank = True)

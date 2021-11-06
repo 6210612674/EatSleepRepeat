@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 from . import views
 
 app_name="users"
@@ -10,7 +10,7 @@ urlpatterns = [
     path('logout/',views.logout_view, name='logout'),
     path('customer/',views.customer_view, name='customer'),
     path('store/',views.store_view, name='store'),
-    
+    path('favourite/<str:store_user>', views.favourite, name='favourite'),
 
-    
+
 ]

@@ -68,3 +68,13 @@ def store_view(request):
     return render(request, "users/store_account.html")
 
 
+def favourite(request, store_user):
+    user = User.objects.get(username=request.user.username)
+    store = Store.objects.get(user=store_user)
+    if request.user in store.favourite.all():
+        store.favourite.remove(user)
+    else:
+        store.favourite.add(user)
+
+
+    return redirect("homepage:index")
