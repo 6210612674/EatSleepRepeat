@@ -3,6 +3,8 @@
 
 * {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 .navbar {
@@ -11,34 +13,44 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  padding: 20px;
+  margin: auto;
+  padding: 0 15px;
+  flex-direction: row;
 }
 
-.textnav {
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  float: right;
+@media (min-width: 768px) {
+	.navbar-nav {
+	  width: 100%;
+	  text-align: center;
+	}
+	.navbar-nav li {
+	  float: none;
+	  display: inline-block;
+	}
+	.navbar-nav li.nav-item {
+	  float: right !important;
+	}
 }
 
 .nav-item {
   padding: 10px;
 }
 
+.navbar-brand {
+  	margin: 10px;
+	order: 0;
+}
+
 .navbar a {
-  float: left;
-  display: block;
   color: #FFEDDC ;
   font-family: 'Sora', sans-serif;
   text-align: center;
-  padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
 }
 
 .navbar a:hover {
   color: #F0A50F !important;
-
 }
 
 .btn {
@@ -65,10 +77,6 @@
   width: 100%;
   max-width: 300px;
   position: relative;
-}
-
-.d-flex input {
-	flex: 1;
 }
 
 #input-search {

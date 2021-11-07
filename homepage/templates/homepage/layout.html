@@ -3,96 +3,104 @@
 
 <html>
 
-    <head>
+<head>
 
-        <title>Eat Sleep Repeat</title>
-        <link rel="stylesheet" type="text/css" href="{% static '/home/css/nav.css' %}">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+  <title>Eat Sleep Repeat</title>
+  <link rel="stylesheet" type="text/css" href="{% static '/home/css/nav.css' %}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+    integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
+    crossorigin="anonymous"></script>
 
-    </head>
+</head>
 
-    <nav class="navbar navbar-expand-lg navbar-dark">
-      
-      <a class="navbar-brand" href="/">
-        <img src="/static/home/img/smallsmall_logo.png" >
-      </a>
+<nav class="navbar navbar-expand-lg navbar-dark">
 
-      <div class="d-flex">
-        <input id="input-search" type="text" required>
-          <div class="search-box">
-            <p search>search</p>
-          </div>
-      </div>
+  <a class="navbar-brand" href="/">
+    <img src="/static/home/img/smallsmall_logo.png">
+  </a>
 
-      {% if user.is_authenticated and user.is_store == False %}
+  <div class="d-flex">
+    <input id="input-search" type="search">
+    <div class="search-box">
+      <p search>search</p>
+    </div>
+  </div>
 
-      <div class="textnav">
-          <ul class="navbar-nav">
+  {% if user.is_authenticated and user.is_store == False %}
 
-            <li class="nav-item">
-              
-              <a class="active" aria-current="page" href="#"><img src="/static/home/img/carticon.png"> Cart</a>
-            </li>
+  <div class="textnav">
+    <ul class="navbar-nav">
 
-            <li class="nav-item dropdown">
-              <a class="dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="/static/home/img/usericon.png"> {{ request.user.username }}</a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="{% url 'users:customer' %}"><img src="/static/home/img/userblackicon.png"> My account</a></li>
-                <li><a class="dropdown-item" href="{% url 'users:logout' %}"><img src="/static/home/img/logouticon.png"> Log out</a></li>
-              </ul>
-            </li>
+      <li class="nav-item">
+        <a class="active" aria-current="page" href="#"><img src="/static/home/img/carticon.png"> Cart</a>
+      </li>
 
-          </ul>
-      </div>
+      <li class="nav-item dropdown">
+        <a class="dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+          aria-expanded="false"><img src="/static/home/img/usericon.png"> {{ request.user.username }}</a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="{% url 'users:customer' %}"><img src="/static/home/img/userblackicon.png">
+              My account</a></li>
+          <li><a class="dropdown-item" href="{% url 'users:logout' %}"><img src="/static/home/img/logouticon.png"> Log
+              out</a></li>
+        </ul>
+      </li>
 
-      {% elif user.is_authenticated and user.is_customer == False %}
+    </ul>
+  </div>
 
-      <div class="textnav">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item dropdown">
-              <a class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="/static/home/img/storeicon.png"> {{ request.user.username }}</a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="{% url 'users:store' %}">My account</a></li>
-                  <li><a class="dropdown-item" href="{% url 'users:logout' %}"><img src="/static/home/img/logouticon.png"> Log out</a></li>
-                </ul>
-            </li>
-          </ul>
-      </div>
+  {% elif user.is_authenticated and user.is_customer == False %}
 
-      {% else %}
+  <div class="textnav">
+    <ul class="navbar-nav">
+      <li class="nav-item dropdown">
+        <a class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img
+            src="/static/home/img/storeicon.png"> {{ request.user.username }}</a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="{% url 'users:store' %}">My account</a></li>
+          <li><a class="dropdown-item" href="{% url 'users:logout' %}"><img src="/static/home/img/logouticon.png"> Log
+              out</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
 
-      <div class="textnav">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            
-            <li class="nav-item">
-              <a class="active" href="{% url 'about:index' %}">About</a>
-            </li>
-            
-            <li class="nav-item dropdown">
-              <a class="dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">Sign up As</a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="users/register/store_register/">Store</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="users/register/customer_register">Customer</a></li>
-              </ul>
-            </li>
-            
-            <li class="nav-item">
-              <a class="active" href="users/login">Sign in</a>
-            </li>
-            
-          </ul>
-      </div>
+  {% else %}
 
-      {% endif %}
-    </nav>
+  <div class="textnav">
+    <ul class="navbar-nav">
 
-    <body>
-        {% block body %}
-        {% endblock %}
-    </body>
+      <li class="nav-item">
+        <a class="active" href="{% url 'about:index' %}">About</a>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Sign up As</a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="{% url 'users:store_register' %}">Store</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" href="{% url 'users:customer_register' %}">Customer</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-item">
+        <a class="active" href="users/login">Sign in</a>
+      </li>
+
+    </ul>
+  </div>
+
+  {% endif %}
+</nav>
+
+<body>
+  {% block body %}
+  {% endblock %}
+</body>
 
 </html>
-
