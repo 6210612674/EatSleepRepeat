@@ -7,8 +7,7 @@ from users.models import User, Store , Customer
 
 def index(request):
     return render(request, "homepage/index.html", {
-        "stores": Store.objects.all()
-
+        "stores": Store.objects.all(),
     })
 
 
@@ -19,7 +18,6 @@ def layout(request):
     return render(request, "homepage/layout.html", {
         "stores": Store.objects.all(),
         "customers": Customer.objects.all(),
-
     })
     
 '''

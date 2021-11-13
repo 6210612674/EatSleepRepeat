@@ -13,9 +13,13 @@
     height: 100vh;
     overflow: hidden;
     overflow-y: scroll;
-
+    
     background: url("Slice1.png");
     background-size: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 section {

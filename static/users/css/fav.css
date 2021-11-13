@@ -1,0 +1,7 @@
+.store-list img { 
+  box-shadow: 2px 2px 6px 5px rgba(210, 210, 210, 0.25);
+  border-radius: 10px;
+  width: 146px;
+  height: 155px;
+  object-fit: cover;
+}

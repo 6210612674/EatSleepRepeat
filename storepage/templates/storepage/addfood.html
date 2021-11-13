@@ -42,7 +42,9 @@
 
     {% for name in foods %}
 
-        <li>{{ name.F_name }}</li><p><a href="{% url 'storepage:remove' name.F_id %}" class= "btn btn-outline-danger">Remove</a></p>
+        <li>{{ name.F_name }}</li>
+        <p><a href="{% url 'storepage:remove' name.F_id %}" class= "btn btn-outline-danger">Remove</a>
+        <a href="{% url 'storepage:edit_view' name.F_id %}" class= "btn btn-outline-danger">Edit</a></p>
 
     {% endfor %}
 

@@ -11,6 +11,11 @@ urlpatterns = [
     path('addfood/', views.addfood , name='addfood'),
     path('<str:store_user>/',views.storeitem, name='storeitem'),
     path('<int:F_id>/remove/', views.remove , name='remove'),
+    path('comment/', views.addcomment , name='addcomment'),
+    path('<int:F_id>/editview/', views.edit_view , name='edit_view'),
+    path('edit/', views.edit , name='edit'),
+
+
 
 
 ]

@@ -4,9 +4,10 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib import messages
 from django.views.generic import CreateView
-from .form import CustomerSignUpForm, StoreSignUpForm
+from .form import CustomerSignUpForm, StoreSignUpForm, UpdateCustomerForm, UpdateStoreForm
 from django.contrib.auth.forms import AuthenticationForm
-from .models import *
+from .models import User, Customer, Store
+
 
 # Create your views here.
 
@@ -75,6 +76,73 @@ def favourite(request, store_user):
         store.favourite.remove(user)
     else:
         store.favourite.add(user)
-
-
     return redirect("homepage:index")
+
+
+def favourite_view(request, customer_user):
+    user = User.objects.get(username=request.user.username)
+
+    return render(request, "users/favourite_view.html", {
+        "stores": Store.objects.filter(favourite=user),
+        })
+
+
+
+# def favorite_viewview(request, id):
+#     post =Store.objects.all();
+#     if post.favorite.filter(id=request.user.id).exists():
+
+#     else:
+#         post.favorite.add(request.user)
+#     return redirect('article_detail', pk=article.pk)
+
+
+"""
+def favourite_view(request):
+    fav_list = []
+    for f in Store.objects.all():
+        if request.user in c.favourite.all():
+        fav_list.append(c)
+    return render(request, "users/favourite_view.html",{
+        "fav_list" : fav_list,
+    })
+
+ "stores": Store.favourite.objects.filter(User,customer)
+
+store = store_user
+    return render(request, "storepage/storeitem.html",{
+        "store": store,
+        "foods": Food.objects.filter(registered_store=store)
+    })
+"""
+
+def customer_profile(request):
+    if request.method == 'POST':
+        user_form = UpdateCustomerForm(request.POST, instance=request.user)
+
+        if user_form.is_valid():
+            user_form.save()
+            messages.success(request, 'Your profile is updated successfully')
+            return redirect('users:customer')
+    else:
+        user_form = UpdateCustomerForm(instance=request.user)
+
+    return render(request, 'users/customer_profile.html', {
+        'user_form': user_form,
+    })
+
+
+def store_profile(request):
+    if request.method == 'POST':
+        user_form = UpdateStoreForm(request.POST, instance=request.user)
+
+        if user_form.is_valid():
+            user_form.save()
+            messages.success(request, 'Your profile is updated successfully')
+            return redirect('users:store')
+    else:
+        user_form = UpdateStoreForm(instance=request.user)
+
+    return render(request, 'users/store_profile.html', {
+        'user_form': user_form,
+    })

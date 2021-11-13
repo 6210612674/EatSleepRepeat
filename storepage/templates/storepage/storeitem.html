@@ -1,32 +1,134 @@
 {% extends "homepage/layout.html" %}
 {% load static %}
+
+<html>
 {% block body %}
-<link rel="stylesheet" type="text/css" href="{% static '/home/css/home.css' %}">
-    <ul>
-    <h1> Food list </h1>
 
-    <a class="btn btn-outline-danger" href="{% url 'users:favourite' store %}" role="button">{{store.user_id}}favorite</a>
+<link rel="stylesheet" type="text/css" href="{% static '/store/css/storeitem.css' %}">
 
-    <div class="item-container">
-        {% for food in foods %}
-            <a class="store-link">
-            <div class="store-list">
-                {{ food.F_name }}</br>
-                {{ food.price }}</br>
-            </div>
-            </a>
-        {% endfor %}
+{% for store in stores %}
+  <img id="cover"  src="{{ BASIC_DIR }}/{{ store.store_image }}">
+{% endfor %}
+
+<div class="store-title-con">
+
+  {% for store in stores %}
+    <h1>{{ store.store_name }}</h1>
+  {% endfor %}
+
+  <a class="btn btn-outline-danger" href="{% url 'users:favourite' store %}" role="button">{{store.user_id}}favorite</a>
+
+  <!--หัวใจ fav-->
+  <!--<label class="like">-->
+  <!--  <input type="checkbox" onchange="{% url 'users:favourite' store %}">-->
+  <!--  <div class="hearth"/>-->
+  <!--</label>-->
+
+</div>
+
+<ul>
+
+<div class="menu-container">
+  <div class="menu-list-container">
+    {% for food in foods %}
+    <div class="menu-list">
+      <img src="{{ BASIC_DIR }}/{{ food.food_image }}" >
+      <div class="text">
+        <p>{{ food.F_name }}</p>
+        <p>THB {{ food.price }}</p>
+        <p>{{ food.description }}</p>
+      </div>
     </div>
+    {% endfor %}
+  </div>
+</div>
 
-    </ul>
+</ul>
 
-
+<!--<script>storelink = "https://www.foodpanda.co.th/restaurant/waq5/khao-yum-kai-zab-on-nut-market"</script>-->
 <!-- hashflag-gallery - dribbble - twitter -->
 
-<a class="foodpanda" target="_top" href="https://www.foodpanda.co.th/restaurant/waq5/khao-yum-kai-zab-on-nut-market">
-  <img src="/static/home/img/foodpanda3.jpg" style="width: 75px; height: 55px; margin-left: 30px;">
-</a>
+<!--<a class="foodpanda" target="_top" href="#">-->
+<!--  <img src="/static/store/img/foodpanda_logo.png" style="margin-left: 30px;">-->
+<!--</a>-->
+
+<!--<a class="lineman" target="_top" href="#">-->
+<!--  <img src="/static/store/img/line_man_logo.png" style="margin-left: 30px;">-->
+<!--</a>-->
+
+
+<div class="comment-con">
+
+  <h3>Comment</h3>
+
+  <div class="comment">
+
+    {% for store in stores %}
+
+      <form action="{% url 'storepage:addcomment' %}" method="POST" class="mb-3">
+        {% csrf_token %}
+
+        <div class="row">
+
+          <div class="col-sm-11">
+            {%if request.user.is_superuser%}
+            <select name="user" id="user">
+              <option value="{{ store.user }}">{{ store.user }}</option>
+            </select>
+            {%endif%}
+            <input type="text" name="name" class="form-control" placeholder="Enter Your Name">
+            <input type="text" name="review" class="form-control" placeholder="Enter Your Comment">
+
+            <div class="rating">
+              <div class="rate">
+                <input type="radio" id="star5" name="rate" value="5" />
+                <label for="star5" title="text">5 stars</label>
+                <input type="radio" id="star4" name="rate" value="4" />
+                <label for="star4" title="text">4 stars</label>
+                <input type="radio" id="star3" name="rate" value="3" />
+                <label for="star3" title="text">3 stars</label>
+                <input type="radio" id="star2" name="rate" value="2" />
+                <label for="star2" title="text">2 stars</label>
+                <input type="radio" id="star1" name="rate" value="1" />
+                <label for="star1" title="text">1 star</label>
+              </div>
+            </div>
+
+          </div>
+
+          <div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+
+
+        </div>
+      </form>
+
+    {% endfor %}
+
+  {% for comment in comments %}
+
+    <h5>{{ comment.comment_name }}</h5>
+    {% if comment.rating == 5  %}
+      <p>⭐⭐⭐⭐⭐</p>
+    {% elif comment.rating == 4  %}
+      <p>⭐⭐⭐⭐</p>
+    {% elif comment.rating == 3  %}
+      <p>⭐⭐⭐</p>
+    {% elif comment.rating == 2  %}
+      <p>⭐⭐</p>
+    {% else %}
+      <p>⭐</p>
+    {% endif %}
+
+    <p>{{ comment.comment_text }}</p>
+
+  {% endfor %}
+
+  </div>
+
+</div>
 
 {% endblock %}
-
+</html>
 

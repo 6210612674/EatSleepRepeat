@@ -4,14 +4,14 @@ from users.models import User, Store
 
 # Create your models here.
 class Food (models.Model):
-    
+
     CATEGORY = [
         ('Main', 'Main'),
         ('Appetizer', 'Appetizer'),
         ('Dessert', 'Dessert'),
         ('Drink', 'Drink'),
     ]
-    
+
     active = models.BooleanField(default=True)
     F_id = models.AutoField(primary_key=True)
     F_name = models.CharField(max_length=150)
@@ -19,7 +19,7 @@ class Food (models.Model):
     description = models.CharField(max_length=150)
     category = models.CharField(max_length=100 ,choices = CATEGORY)
     registered_store = models.ManyToManyField(User, blank=True, related_name="regisstore")
-    food_image = models.ImageField(upload_to='media/foodimg/', blank = True)
+    food_image = models.ImageField(upload_to='static/foodimg/', blank = True)
 
     def __str__(self):
         return  f"{self.F_id} {self.F_name} {self.price} {self.description} {self.category}"
@@ -32,6 +32,13 @@ class Order (models.Model):
     def __str__(self):
         return  f"{self.id} {self.O_id} : {self.amount}"
 
+class Comment (models.Model):
 
+    commented_store = models.ManyToManyField(User, blank=True, related_name="comstore")
+    comment_name = models.CharField(max_length=300)
+    comment_text = models.CharField(max_length=300)
+    rating = models.IntegerField(default=0)
 
+    def __str__(self):
+        return  f"{self.commented_store} : {self.comment_name}  {self.comment_text}"
 

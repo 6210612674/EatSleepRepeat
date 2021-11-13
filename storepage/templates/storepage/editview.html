@@ -1,0 +1,39 @@
+{% extends "homepage/layout.html" %}
+{% load static %}
+
+{% block body %}
+<html>
+
+
+    <p>---------------------------------------------------------------------------------------</p>
+
+    <h1>Edit Food</h1>
+
+    <form method="POST" action="{% url 'storepage:editview' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label>Food Name:</label>
+        <input type="text" name="foodname"><br />
+        <label>Price:</label>
+        <input type="number" name="price"><br />
+
+            <label for="type">Type:</label>
+            <select name="type" id="type">
+            <option value="Main">Main</option>
+            <option value="Appetizer">Appetizer</option>
+            <option value="Dessert">Dessert</option>
+            <option value="Drink">Drink</option>
+          </select>
+          <br/>
+
+        <label>Food Image</label>
+        <input type="file" name="foodimage"><br />
+
+        <label>Description:</label>
+        <input type="text" name="description"><br />
+
+        <input type="submit" value="Edit" class="apply-button"/>
+
+    </form>
+
+</html>
+{% endblock %}

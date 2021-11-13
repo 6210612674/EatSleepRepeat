@@ -3,20 +3,33 @@
 
 {% block body %}
 
-    <title>{{ request.user.store.store_name }}</title>
+{% if messages %}
+    <link rel="stylesheet" type="text/css" href="{% static '/users/css/alert.css' %}">
 
-    <a href="{% url 'users:store' %}"><button>My Detail</button></a>
-    <a href="{% url 'storepage:addfoodview' %}"><button>Add Menu</button></a>
-    <a href="{% url 'storepage:statistic' %}"><button>Statistic</button></a>
+	{% for message in messages %}
+    <div{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>
+        {{ message }}
+    </div>
+    {% endfor %}
+
+{% endif %}
+
+<a href="{% url 'users:store' %}"><button>My Detail</button></a>
+<a href="{% url 'storepage:addfoodview' %}"><button>Add Menu</button></a>
+<a href="{% url 'storepage:statistic' %}"><button>Statistic</button></a>
+<div><button class="button-os"><a href="{% url 'users:store_profile' %}">Edit Info</a></button></div>
 
 
-
-    <ul>
-        <li>Username: {{ request.user.username }}</li>
-        <li>Email: {{ request.user.email }}</li>
-        <li>Address: {{ request.user.store.location }}</li>
-        <li>Tel: {{ request.user.tel }}</li>
-        <li>Service Time: </li>
-    </ul>
+<h1>{{ request.user.store.store_name }}</h1>
+<ul>
+    <li>Username: {{ request.user.username }}</li>
+    <li>Email: {{ request.user.email }}</li>
+    <li>Address: {{ request.user.store.location }}</li>
+    <li>Tel: {{ request.user.tel }}</li>
+    <li>Service Time: </li>
+    <li>Type: {{ request.user.store.type_store }}</li>
+    <li>Place: {{ request.user.store.place }}</li>
+    <li>Location: {{ request.user.store.location_url }}</li>
+</ul>
 
 {% endblock %}

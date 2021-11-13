@@ -25,6 +25,7 @@
 
 #map {
   position: relative;
+  max-width: 100%;
   width: 1078px;
   height: 324px;
   align-items: center;
@@ -58,8 +59,14 @@
 .store-list {
   width: 255px;
   height: 170.33px;
-  background-color: aqua;
   border-radius: 10px;
+}
+
+.store-list img { 
+  border-radius: 10px;
+  width: 255px;
+  height: 170.33px;
+  object-fit: cover;
 }
 
 .item-container {
