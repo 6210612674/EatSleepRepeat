@@ -1,4 +1,4 @@
-{% extends "homepage/layout.html" %}
+{% extends "users/store_layout.html" %}
 {% load static %}
 
 {% block body %}
@@ -13,11 +13,6 @@
     {% endfor %}
 
 {% endif %}
-
-<a href="{% url 'users:store' %}"><button>My Detail</button></a>
-<a href="{% url 'storepage:addfoodview' %}"><button>Add Menu</button></a>
-<a href="{% url 'storepage:statistic' %}"><button>Statistic</button></a>
-<div><button class="button-os"><a href="{% url 'users:store_profile' %}">Edit Info</a></button></div>
 
 
 <h1>{{ request.user.store.store_name }}</h1>

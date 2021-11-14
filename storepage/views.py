@@ -20,37 +20,22 @@ def addfood_view(request):
 def statistic_view(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("users:login"))
+    user = User.objects.get(username=request.user.username)
+    counter = Comment.objects.filter(commented_store=user).count()
+    viewcount = user.view_count
 
-    return render(request, "storepage/statistic.html")
-
-'''
-def comment_view(request):
-    if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse("users:login"))
-
-    return render(request, "storepage/comment.html")
-'''
-
-'''
-def storelist_view(request):
-    if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse("users:login"))
-
-    return render(request, "storepage/storeitem.html",{
-    "foods": Food.objects.all()
+    return render(request, "storepage/statistic.html",{
+        "stores": viewcount,
+        "count": counter,
 
     })
-'''
-'''
-def addfood(request):
-    if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse("users:login"))
-
-'''
-
+    
 
 def storeitem(request, store_user):
     store = store_user
+    store2 = User.objects.get(id=store)
+    store2.view_count += 1
+    store2.save()
     return render(request, "storepage/storeitem.html",{
         "store": store,
         "foods": Food.objects.filter(registered_store=store),
@@ -107,14 +92,14 @@ def remove(request, F_id):
 def edit(request, F_id):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("users:login"))
-    food = Food.objects.get(F_id = preid)
+    food = Food.objects.get(F_id = F_id)
     if request.method == "POST":
 
-        food.F_name = request.POST('foodname')
-        food.price = request.POST('price')
-        food.category = request.POST('type')
-        food.description = request.POST('description')
-        food.food_image = request.FILES('foodimage')
+        food.F_name = request.POST['foodname']
+        food.price = request.POST['price']
+        food.category = request.POST['type']
+        food.description = request.POST['description']
+        food.food_image = request.FILES['foodimage']
         food.save()
 
     return HttpResponseRedirect(reverse("storepage:addfoodview"))
@@ -123,6 +108,6 @@ def edit(request, F_id):
 def edit_view(request, F_id):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("users:login"))
-    return render(request, "storepage/Hello.html",{
+    return render(request, "storepage/editview.html",{
         "foods": Food.objects.filter(F_id=F_id),
     })

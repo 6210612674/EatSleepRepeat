@@ -15,6 +15,10 @@ class HomepageViewTestCase(TestCase):
         order = Order.objects.create(amount=20.00)
         self.assertEqual(order.__str__(), f"1  : 20.0")
 
+    def test_Comment(self):
+        comment = Comment.objects.create(comment_name="kkk", comment_text="aroi", rating=3)
+        self.assertEqual(comment.__str__(), f"users.User.None : kkk  aroi")
+
     def test_googlemap_view(self):
         c = Client()
         response = c.get(reverse('homepage:googlemap'))

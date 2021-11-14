@@ -124,30 +124,6 @@ class StoreSignUpForm(UserCreationForm):
         store.save()
         return user
 
-'''
-class StoreAddFood(forms.Form):
-    product_name = form.CharField(
-        label = '',
-        required = False,
-        max_length = 30,
-        min_length = 2,
-        widget = forms.TextInput(attrs={
-            'placeholder': 'Food Name',
-            'size': '30'
-        })
-    )
-
-    product_price = form.CharField(
-    label = '',
-    required = False,
-    widget = forms.TextInput(attrs={
-        'placeholder': 'Price',
-        'size': '10'
-    })
-)
-
-'''
-
 class UpdateCustomerForm(forms.ModelForm):
 
     GENDER = [
@@ -230,8 +206,6 @@ class UpdateStoreForm(forms.ModelForm):
     type_store = forms.ChoiceField(choices = TYPE)
     place = forms.ChoiceField(choices = PLACE)
     location_url = forms.CharField()
-
-
 
     class Meta:
         model = User

@@ -12,8 +12,10 @@ class UserViewTestCase(TestCase):
     def setUp(self):
         User.objects.create(username="user1", password=make_password(
             '1234'), email="user1@example.com")
-        User.objects.create(username="user2", password=make_password(
+        userstore = User.objects.create(username="user2", password=make_password(
             '1234'), email="user2@example.com", is_store=True)
+        store = Store.objects.create(
+            user = userstore, location = "xxx", store_name = "xxx", type_store  = "xxx", place = "xxx", location_url = "xxx")
 
     def test_login_view_with_authentication(self):
         c = Client()
@@ -69,17 +71,63 @@ class UserViewTestCase(TestCase):
         self.assertEqual(response.status_code, 302)
 
     def test_store_view_with_auth(self):
+        userstore = User.objects.get(username='user2')
+        c = Client()
+        c.force_login(userstore)
+        response = c.get(reverse('users:store'), args=(userstore.id,))
+        self.assertEqual(response.status_code, 200)
+
+    def test_favourite_add_successful(self):
+        user1 = User.objects.get(username='user1')
+        userstore = User.objects.get(username="user2")
+        store = Store.objects.first()
+        c = Client()
+        c.force_login(user1)
+        response = c.get(reverse('users:favourite', args=("2")))
+        self.assertEqual(store.favourite.count(), 1)
+
+
+    def test_favourite_remove_successful(self):
+        user1 = User.objects.get(username='user1')
+        userstore = User.objects.get(username="user2")
+        store = Store.objects.first()
+        store.favourite.add(user1)
+        c = Client()
+        c.force_login(user1)
+        response = c.get(reverse('users:favourite', args=("2")))
+        self.assertEqual(store.favourite.count(), 0)
+
+
+    def test_favourite_view(self):
         user = User.objects.get(username='user1')
         c = Client()
         c.force_login(user)
-        response = c.get(reverse('users:store'))
+        response = c.get(reverse('users:favourite_view', args=(user.id,)))
         self.assertEqual(response.status_code, 200)
 
-    def test_favourite_successful(self):
-        user1 = User.objects.get(username='user1')
-        user2 = User.objects.get(username='user2')
-        store = Store.objects.get(user=user2)
+    def test_customer_profile_successful(self):
+        user = User.objects.get(username='user1')
         c = Client()
-        c.force_login(user1)
-        response = c.get(reverse('users:favourite', args=(store.user,)))
-        self.assertEqual(store.favourite.count(), 1)
+        c.force_login(user)
+        # form = UpdateCustomerForm(entry=entry)
+        # form = UpdateCustomerForm(request.POST, entry=entry)
+        # self.assertTrue(form.is_valid())
+        # form.save()
+        response = c.post(reverse('users:customer_profile'), {
+            'first_name': 'kkk',
+        })
+        self.assertEqual(response.status_code, 200)
+
+    def test_store_profile(self):
+        userstore = User.objects.get(username="user2")
+        store = Store.objects.first()
+
+        c = Client()
+        c.force_login(userstore)
+        response = c.post(reverse('users:store_profile'), {
+            'user': userstore ,'store_name': 'kkk',
+        })
+        self.assertEqual(response.status_code, 200)
+
+
+

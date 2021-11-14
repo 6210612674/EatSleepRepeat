@@ -71,11 +71,11 @@
         <div class="row">
 
           <div class="col-sm-11">
-            {%if request.user.is_superuser%}
+
             <select name="user" id="user">
               <option value="{{ store.user }}">{{ store.user }}</option>
             </select>
-            {%endif%}
+
             <input type="text" name="name" class="form-control" placeholder="Enter Your Name">
             <input type="text" name="review" class="form-control" placeholder="Enter Your Comment">
 

@@ -87,35 +87,6 @@ def favourite_view(request, customer_user):
         })
 
 
-
-# def favorite_viewview(request, id):
-#     post =Store.objects.all();
-#     if post.favorite.filter(id=request.user.id).exists():
-
-#     else:
-#         post.favorite.add(request.user)
-#     return redirect('article_detail', pk=article.pk)
-
-
-"""
-def favourite_view(request):
-    fav_list = []
-    for f in Store.objects.all():
-        if request.user in c.favourite.all():
-        fav_list.append(c)
-    return render(request, "users/favourite_view.html",{
-        "fav_list" : fav_list,
-    })
-
- "stores": Store.favourite.objects.filter(User,customer)
-
-store = store_user
-    return render(request, "storepage/storeitem.html",{
-        "store": store,
-        "foods": Food.objects.filter(registered_store=store)
-    })
-"""
-
 def customer_profile(request):
     if request.method == 'POST':
         user_form = UpdateCustomerForm(request.POST, instance=request.user)

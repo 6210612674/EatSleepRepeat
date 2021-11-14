@@ -2,7 +2,6 @@
 {% load static %}
 
 {% block body %}
-<html>
 
 <link rel="stylesheet" type="text/css" href="{% static '/users/css/sidenav.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static '/users/css/customer_account.css' %}">
@@ -20,9 +19,9 @@
 
 {% endif %}
 
-<div class ="container">
+<div class ="sidenav-container">
     <div><button class="button-os"><a href="{% url 'users:customer' %}">My Detail</a></button></div>
-    <div><button class="button-os"><a href="{% url 'users:favourite_view' request.user.username %}">Your Favourite</a></button></div>
+    <div><button class="button-os"><a href="{% url 'users:favourite_view' request.user.username %}">My Favourite</a></button></div>
     <div><button class="button-os"><a href="{% url 'users:customer_profile' %}">Edit Info</a></button></div>
     <div><button class="button-os"><a href="{% url 'users:logout' %}">Log out</a></button></div>
 </div>
@@ -56,5 +55,4 @@
 
    -->
 
-</html>
 {% endblock %}

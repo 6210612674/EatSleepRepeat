@@ -11,7 +11,7 @@ class User(AbstractUser):
     last_name = models.CharField(max_length=100)
     tel = models.CharField(max_length=100)
     gender = models.CharField(max_length=100)
-
+    view_count = models.IntegerField(default=0)
 
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE, primary_key = True)
@@ -26,4 +26,5 @@ class Store(models.Model):
     location_url = models.CharField(max_length=100)
     store_image = models.ImageField(upload_to='static/storeimg/', blank = True)
     favourite = models.ManyToManyField(User ,related_name = 'favourite',blank = True)
+
 

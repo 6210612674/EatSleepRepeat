@@ -46,8 +46,7 @@ button{
   font-family: 'Sora', sans-serif;
 }
 
-
-.container {
+.sidenav-container {
   float: left;
   padding: 5px;
   display: flex;
@@ -56,7 +55,7 @@ button{
   flex-wrap: wrap;
 }
 
-.container div {
+.sidenav-container div {
   flex: 1 1 auto;
   margin: 5px;
 }
