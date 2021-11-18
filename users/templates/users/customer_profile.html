@@ -21,31 +21,31 @@
                 </button>
             </div>
         {% endif %}
-        
+
         <form method="post" enctype="multipart/form-data" id="form-group">
             {% csrf_token %}
             <label>First name</label>
                 {{ user_form.first_name }}
             <label>Last name</label>
                 {{ user_form.last_name }}
+            <label>Gender</label>
+                {{ user_form.gender }}
             <label>Email</label>
                 {{ user_form.email }}
             <label>Tel</label>
                 {{ user_form.tel }}
             <label>Address</label>
-                {{ user_form.address }}
-            <label>Gender</label>
-                {{ user_form.gender }}
+                {{ cus_form.address }}
             <br>
-            
+
             <div class="btn-pro">
                 <button type="submit" class="pro">Save Changes</button>
                 <button type="reset" class="pro">Reset</button>
             </div>
-            
+
         </form>
-    </div>     
-</div>       
+    </div>
+</div>
 
 
 <!--<div class ="sidenav-container">-->

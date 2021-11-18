@@ -24,6 +24,15 @@
   <!--  <div class="hearth"/>-->
   <!--</label>-->
 
+  <ul>
+    <li>Status: {{ request.user.store.status }}</li>
+    <li>Service time: {{ request.user.store.open_time }} - {{ request.user.store.close_time }}</li>
+    <li>Type: {{ request.user.store.type_store }}</li>
+    <li>Place: {{ request.user.store.place }}</li>
+    <li><a class="btn" href="{{ request.user.store.location_url }}" role="button"><img src="/static/home/img/lo.png"> GOOGLE MAP</a></li>
+    <li>Description: {{ request.user.store.description }}</li>
+  </ul>
+
 </div>
 
 <ul>

@@ -196,6 +196,11 @@ class UpdateStoreForm(forms.ModelForm):
         ('I prefer not to say', 'I prefer not to say'),
     ]
 
+    STATUS = [
+        ('Open', 'Open'),
+        ('Close', 'Close'),
+    ]
+
     store_name = forms.CharField()
     first_name = forms.CharField()
     last_name = forms.CharField()
@@ -206,8 +211,18 @@ class UpdateStoreForm(forms.ModelForm):
     type_store = forms.ChoiceField(choices = TYPE)
     place = forms.ChoiceField(choices = PLACE)
     location_url = forms.CharField()
+    description = forms.CharField()
+    open_time = forms.TimeField()
+    close_time = forms.TimeField()
+    delivery_link = forms.URLField()
+    status = forms.ChoiceField(choices = STATUS)
+    store_image = forms.ImageField()
 
     class Meta:
         model = User
-        fields = ['store_name', 'first_name', 'last_name', 'email', 'tel', 'gender', 'location', 'type_store', 'place', 'location_url']
+        fields = ['store_name', 'first_name', 'last_name', 'email', 'tel', 'gender', 'location', 'type_store', 'place', 'location_url', 'description', 'open_time', 'close_time', 'delivery_link', 'status', 'store_image']
 
+        widgets = {
+            'open_time': forms.TimeInput(format='%H:%M'),
+            'close_time': forms.TimeInput(format='%H:%M'),
+        }

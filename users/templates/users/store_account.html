@@ -21,10 +21,21 @@
     <li>Email: {{ request.user.email }}</li>
     <li>Address: {{ request.user.store.location }}</li>
     <li>Tel: {{ request.user.tel }}</li>
-    <li>Service Time: </li>
+
+</ul>
+
+<ul>
+    {% if request.user.store.verify == True %}
+        <li> Verify: Success </li>
+    {% else %}
+        <li> Verify: No </li>
+    {% endif %}
+    <li>Status: {{ request.user.store.status }}</li>
+    <li>Service time: {{ request.user.store.open_time }} - {{ request.user.store.close_time }}</li>
     <li>Type: {{ request.user.store.type_store }}</li>
     <li>Place: {{ request.user.store.place }}</li>
     <li>Location: {{ request.user.store.location_url }}</li>
+    <li>Description: {{ request.user.store.description }}</li>
 </ul>
 
 {% endblock %}

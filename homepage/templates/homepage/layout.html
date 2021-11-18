@@ -20,6 +20,8 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark">
 
+  {% if user.is_authenticated and user.is_store == False %}
+
   <a class="navbar-brand" href="/">
     <img src="/static/home/img/smallsmall_logo.png">
   </a>
@@ -32,8 +34,6 @@
       </div>
     </form>
   </div>
-
-  {% if user.is_authenticated and user.is_store == False %}
 
   <div class="textnav">
     <ul class="navbar-nav">
@@ -60,6 +60,19 @@
 
   {% elif user.is_authenticated and user.is_customer == False %}
 
+  <a class="navbar-brand" href="{% url 'users:store' %}">
+    <img src="/static/home/img/smallsmall_logo.png">
+  </a>
+
+  <div class="d-flex">
+    <form method="GET" action="{% url 'homepage:search' %}" >
+      <input id="input-search" type="search" name="search">
+      <div class="search-box">
+        <p search>search</p>
+      </div>
+    </form>
+  </div>
+
   <div class="textnav">
     <ul class="navbar-nav">
       <li class="nav-item dropdown">
@@ -75,6 +88,19 @@
   </div>
 
   {% else %}
+
+  <a class="navbar-brand" href="/">
+    <img src="/static/home/img/smallsmall_logo.png">
+  </a>
+
+  <div class="d-flex">
+    <form method="GET" action="{% url 'homepage:search' %}" >
+      <input id="input-search" type="search" name="search">
+      <div class="search-box">
+        <p search>search</p>
+      </div>
+    </form>
+  </div>
 
   <div class="textnav">
     <ul class="navbar-nav">

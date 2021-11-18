@@ -92,30 +92,38 @@ def favourite_view(request, customer_user):
 def customer_profile(request):
     if request.method == 'POST':
         user_form = UpdateCustomerForm(request.POST, instance=request.user)
+        cus_form = UpdateCustomerForm(request.POST, instance=request.user.customer)
 
         if user_form.is_valid():
             user_form.save()
+            cus_form.save()
             messages.success(request, 'Your profile is updated successfully')
             return redirect('users:customer')
     else:
         user_form = UpdateCustomerForm(instance=request.user)
+        cus_form = UpdateCustomerForm(instance=request.user.customer)
 
     return render(request, 'users/customer_profile.html', {
         'user_form': user_form,
+        'cus_form' : cus_form,
     })
 
 
 def store_profile(request):
     if request.method == 'POST':
-        user_form = UpdateStoreForm(request.POST, instance=request.user)
+        user_form = UpdateStoreForm(request.POST, request.FILES, instance=request.user)
+        sto_form = UpdateStoreForm(request.POST, request.FILES, instance=request.user.store)
 
         if user_form.is_valid():
             user_form.save()
+            sto_form.save()
             messages.success(request, 'Your profile is updated successfully')
             return redirect('users:store')
     else:
         user_form = UpdateStoreForm(instance=request.user)
+        sto_form = UpdateStoreForm(instance=request.user.store)
 
     return render(request, 'users/store_profile.html', {
         'user_form': user_form,
+        'sto_form' : sto_form,
     })

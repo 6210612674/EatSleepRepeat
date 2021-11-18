@@ -28,10 +28,12 @@
   </a>
 
   <div class="d-flex">
-    <input id="input-search" type="search">
-    <div class="search-box">
-      <p search>search</p>
-    </div>
+    <form method="GET" action="{% url 'homepage:search' %}" >
+      <input id="input-search" type="search" name="search">
+      <div class="search-box">
+        <p search>search</p>
+      </div>
+    </form>
   </div>
 
   {% if user.is_authenticated and user.is_customer == False %}

@@ -1,4 +1,4 @@
-{% extends "homepage/layout.html" %}
+{% extends "users/store_layout.html" %}
 {% load static %}
 
 {% block body %}
@@ -6,8 +6,8 @@
 <link rel="stylesheet" type="text/css" href="{% static '/users/css/sidenav.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static '/users/css/customer_account.css' %}">
 
- <div class="row my-3 p-3">
-    </div>
+<div class="row my-3 p-3"></div>
+
     {% if user_form.errors %}
         <div class="alert alert-danger alert-dismissible" role="alert">
             <div id="form_errors">
@@ -20,6 +20,7 @@
             </button>
         </div>
     {% endif %}
+
     <div class="form-content">
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
@@ -27,7 +28,7 @@
                 <div class="col-md-5">
                     <div class="form-group">
                         <label class="small mb-1">Store name:</label>
-                            {{ user_form.store_name }}
+                            {{ sto_form.store_name }}
                         <label class="small mb-1">First name:</label>
                             {{ user_form.first_name }}
                         <label class="small mb-1">Last name:</label>
@@ -39,17 +40,25 @@
                         <label class="small mb-1">Gender:</label>
                             {{ user_form.gender }}
                         <label class="small mb-1">Location:</label>
-                            {{ user_form.location }}
+                            {{ sto_form.location }}
                         <label class="small mb-1">Type store:</label>
-                            {{ user_form.type_store }}
+                            {{ sto_form.type_store }}
                         <label class="small mb-1">Place:</label>
-                            {{ user_form.place }}
+                            {{ sto_form.place }}
                         <label class="small mb-1">Location URL:</label>
-                            {{ user_form.location_url }}
-                    </div>
-                    <div class="form-group">
-                        <a href="#">Change Password</a>
-                        <hr>
+                            {{ sto_form.location_url }}
+                        <label class="small mb-2">Open:</label>
+                            <input type="time" name="open_time" id="id_time">
+                        <label class="small mb-2">Close:</label>
+                            <input type="time" name="close_time" id="id_time">
+                        <label class="small mb-1">Status</label>
+                            {{ user_form.status }}
+                        <label class="small mb-1">Delivery URL</label>
+                            {{ sto_form.delivery_link }}
+                        <label class="small mb-1">Description</label>
+                            {{ sto_form.description }}
+                        <label class="small mb-1">Store Image</label>
+                            {{ sto_form.store_image }}
                     </div>
                 </div>
             </div>
@@ -58,6 +67,5 @@
             <button type="reset" class="btn btn-dark btn-lg">Reset</button>
         </form>
     </div>
-
 
 {% endblock %}

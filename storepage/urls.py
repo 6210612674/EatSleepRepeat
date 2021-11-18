@@ -15,5 +15,6 @@ urlpatterns = [
     path('<int:F_id>/remove/', views.remove , name='remove'),
     path('<int:F_id>/editview/', views.edit_view , name='edit_view'),
 ]
+
 if settings.DEBUG:
         urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

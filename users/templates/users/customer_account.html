@@ -28,9 +28,9 @@
 <div class = "info">
     <h1>Welcome, {{ request.user.first_name }} {{ request.user.last_name }}</h1>
     <p >Username: {{ request.user.username }}</p>
+    <p>Gender: {{ request.user.gender }}</p>
     <p>Email: {{ request.user.email }}</p>
     <p>Tel: {{ request.user.tel }}</p>
-    <p>Gender: {{ request.user.gender }}</p>
     <p>Address: {{ request.user.customer.address }}</p>
 </div>
 </body>
