@@ -1,7 +1,97 @@
-.store-list img { 
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&display=swap');
+
+
+
+body{
+    background: url("/static/users/img/bgfav3.png");
+  	background-size: 100%;
+}
+
+.box:hover .overlay {
+  opacity: 1;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #FAF3F3;
+  border-radius: 10px;
+}
+
+.store-container {
+  position: relative;
+  display: flex;
+  margin: auto;
+  width: 1078px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  text-decoration: none;
+  gap: 20px;
+}
+
+.box {
+  position: relative;
+  display: inline-block; /* Make the width of box same as image */
+  box-shadow: inset 0px -53px 18px rgba(0, 0, 0, 0.47), inset 0px 5px 18px rgba(0, 0, 0, 0.47);
+}
+
+.box .text{
+  position: absolute;
+  z-index: 999;
+  margin: 0 auto;
+  left: 0;
+  right:50%;
+  top: 40%; /* Adjust this value to move the positioned div up and down */
+  text-align: center;
+  width: 60%; /* Set the width of the positioned div */
+}
+
+.store-list {
+  width: 255px;
+  height: 170.33px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.store-list img {
+  position: absolute;
   box-shadow: 2px 2px 6px 5px rgba(210, 210, 210, 0.25);
   border-radius: 10px;
-  width: 146px;
-  height: 155px;
+  width: 255px;
+  height: 170.33px;
   object-fit: cover;
+  z-index: -2;
+}
+
+.store-list h4 {
+    position: absolute;
+    color: #FFEDDC ;
+    font-family: 'Sora', sans-serif;
+    /*text-align: center;*/
+    text-decoration: none;
+    font-size: 40px;
+    z-index: 100;
+}
+
+.store-list p {
+    position: absolute;
+    color: #FFEDDC;
+    font-family: 'Sora', sans-serif;
+    text-decoration: none;
+    font-size: 20px;
+    z-index: 999;
+    left: 0;
+    bottom: 0;
+}
+
+
+.h1{
+    font-family: cursive; Comic Sans MS;
 }

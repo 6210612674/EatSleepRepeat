@@ -5,59 +5,58 @@
 
 <html>
     
-    {% if messages %}
-        <link rel="stylesheet" type="text/css" href="{% static '/users/css/alert.css' %}">
-        <!--<div class="overlay">
-        	<div class="popup">
-        		<a class="close" href="#">&times;</a>
-        		<div class="content">-->
-        			{% for message in messages %}
-                    <div{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
-                    {% endfor %}
-        		</div>
-        	</div>
-        </div>
-    {% endif %}
-    
-    <link rel="stylesheet" type="text/css" href="{% static '/users/css/login.css' %}">
-    <script src="./login.js"></script>
-
-    <div class="container" id="container">
-    	<div class="form-container sign-up-container">
-    		<form action="{% url 'users:customer_register' %}" method = "POST" class="form-group">
-    		    <h1>Create Account</h1>
-                {%csrf_token%}
-                {{ form|crispy }}
-                <button type= "submit">Register</button>
-            </form>
-    	</div>
-
-    	<div class="form-container sign-in-container">
-		    <form action="{% url 'users:login' %}" method = "POST" class="form-group">
-		        <h1>Sign in</h1>
-                {%csrf_token%}
-                {{ form|crispy }}
-                <button type= "submit" class= "btn btn-success">Login</button>
-            </form>
-    	</div>
-
-    	<div class="overlay-container"> <script type="text/javascript" src="/static/users/css/login.js"></script>
-    		<div class="overlay">
-    			<div class="overlay-panel overlay-left">
-    				<h1>Welcome Back!</h1>
-    				<p>To keep connected with us please login with your personal info</p>
-    				<button class="ghost" id="signIn">Sign In</button>
-    			</div>
-    			<div class="overlay-panel overlay-right">
-    				<h1>Hello, Friend!</h1>
-    				<p>Enter your personal details and start journey with us</p>
-    				<a href="{% url 'users:customer_register' %}"><button class="ghost" id="signUp">Sign Up as Customer</button></a>
-    				<a href="{% url 'users:store_register' %}"><button class="ghost" id="signUp">Sign Up as Store</button></a>
-    			</div>
+{% if messages %}
+    <link rel="stylesheet" type="text/css" href="{% static '/users/css/alert.css' %}">
+    <!--<div class="overlay">
+    	<div class="popup">
+    		<a class="close" href="#">&times;</a>
+    		<div class="content">-->
+    			{% for message in messages %}
+                <div{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
+                {% endfor %}
     		</div>
     	</div>
-
     </div>
+{% endif %}
+
+<link rel="stylesheet" type="text/css" href="{% static '/users/css/login.css' %}">
+
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+		<form action="{% url 'users:customer_register' %}" method = "POST" class="form-group">
+		    <h1>Create Account</h1>
+            {%csrf_token%}
+            {{ form|crispy }}
+            <button type= "submit">Register</button>
+        </form>
+	</div>
+
+	<div class="form-container sign-in-container">
+	    <form action="{% url 'users:login' %}" method = "POST" class="form-group">
+	        <h1>Sign in</h1>
+            {%csrf_token%}
+            {{ form|crispy }}
+            <button type= "submit" class= "btn btn-success">Login</button>
+        </form>
+	</div>
+
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>Welcome Back!</h1>
+				<p>To keep connected with us please login with your personal info</p>
+				<button class="ghost" id="signIn">Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>Hello, Friend!</h1>
+				<p>Enter your personal details and start journey with us</p>
+				<a href="{% url 'users:customer_register' %}"><button class="ghost" id="signUp">Sign Up as Customer</button></a>
+				<a href="{% url 'users:store_register' %}"><button class="ghost" id="signUp">Sign Up as Store</button></a>
+			</div>
+		</div>
+	</div>
+
+</div>
 
 </html>
 

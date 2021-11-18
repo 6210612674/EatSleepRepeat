@@ -1,0 +1,35 @@
+{% extends "homepage/layout.html" %}
+{% load static %}
+
+
+
+<html>
+    <head>
+        <title>Eat Sleep Repeat</title>
+    </head>
+
+{% block body %}
+<link rel="stylesheet" type="text/css" href="{% static '/home/css/home.css' %}">
+
+    {% if store %}
+    <div class="store-container">
+
+        {% for store in store %}
+            <a href="{% url 'storepage:storeitem' store.user_id %}" class="store-link" >
+
+              <div class="store-list">
+                <!--{{ store.store_name }}<br>-->
+                <img src="{{ BASIC_DIR }}/{{ store.store_image }}">
+              </div>
+            </a>
+        {% endfor %}
+
+    </div>
+    {% else %}
+        <br/>
+        <h1><center>Nothing Found</center></h1>
+    {% endif %}
+
+{% endblock %}
+
+</html>

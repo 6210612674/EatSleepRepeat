@@ -2,9 +2,15 @@
 {% load static %}
 
 {% block body %}
+
 <html>
-    <h1>Thank you For Comment</h1>
-    <input type=button value="Previous Page" onClick="javascript:history.go(-1);">
+    <link rel="stylesheet" type="text/css" href="{% static '/store/css/thankyou.css' %}">
+    <div class="thank">
+        <h1>Thank You For Comment</h1>
+        <input type=button value="Previous Page" onclick="javascript:history.go(-1);">
+    </div>
 </html>
+
+
 
 {% endblock %}

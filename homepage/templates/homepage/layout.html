@@ -25,10 +25,12 @@
   </a>
 
   <div class="d-flex">
-    <input id="input-search" type="search">
-    <div class="search-box">
-      <p search>search</p>
-    </div>
+    <form method="GET" action="{% url 'homepage:search' %}" >
+      <input id="input-search" type="search" name="search">
+      <div class="search-box">
+        <p search>search</p>
+      </div>
+    </form>
   </div>
 
   {% if user.is_authenticated and user.is_store == False %}
@@ -39,7 +41,9 @@
       <!--<li class="nav-item">-->
       <!--  <a class="active" aria-current="page" href="#"><img src="/static/home/img/carticon.png"> Cart</a>-->
       <!--</li>-->
-
+      <li class="nav-item">
+        <a class="active"  href="{% url 'users:favourite_view' request.user.username %}"><img src="/static/users/img/heart.png"> Favourite </a>
+      </li>
       <li class="nav-item dropdown">
         <a class="dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
           aria-expanded="false"><img src="/static/home/img/usericon.png"> {{ request.user.username }}</a>

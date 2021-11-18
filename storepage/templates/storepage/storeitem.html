@@ -76,6 +76,7 @@
               <option value="{{ store.user }}">{{ store.user }}</option>
             </select>
 
+
             <input type="text" name="name" class="form-control" placeholder="Enter Your Name">
             <input type="text" name="review" class="form-control" placeholder="Enter Your Comment">
 
@@ -122,7 +123,7 @@
     {% endif %}
 
     <p>{{ comment.comment_text }}</p>
-
+    <p>{{ comment.date }}</p>
   {% endfor %}
 
   </div>

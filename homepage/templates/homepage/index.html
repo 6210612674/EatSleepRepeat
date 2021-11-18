@@ -10,25 +10,46 @@
 
 {% block body %}
     <link rel="stylesheet" type="text/css" href="{% static '/home/css/home.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/home/css/nav.css' %}">
     <div class ="location-box">
-        
+
         <div class="dropdown">
 
             <p>Choose Your Location</p>
-
+            
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">Location</button>
-
+            
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-               <li><button class="dropdown-item" type="button">Chiang Rak 1</button></li>
-               <li><button class="dropdown-item" type="button">Chiang Rak 2</button></li>
-               <li><button class="dropdown-item" type="button">TU Dome</button></li>
-               <li><button class="dropdown-item" type="button">Green Canteen</button></li>
-               <li><button class="dropdown-item" type="button">Golf View</button></li>
-               <li><button class="dropdown-item" type="button">Tiw Son Dome</button></li>
-               <li><button class="dropdown-item" type="button">J-Park</button></li>
-               <li><button class="dropdown-item" type="button">JC canteen</button></li>
-               <li><button class="dropdown-item" type="button">SC canteen</button></li>
-               <li><button class="dropdown-item" type="button">opposite Chiang Rak</button></li>
+                <form method="GET" action="{% url 'homepage:store_search_place' %}" >
+                    <li><input type="submit" value="Chiang Rak 1" name ="search" ></input></li>
+                </form>
+                <form method="GET" action="{% url 'homepage:store_search_place' %}" >
+                    <li><input type="submit" value="Chiang Rak 2" name ="search" ></input></li>
+                </form>
+                <form method="GET" action="{% url 'homepage:store_search_place' %}" >
+                    <li><input type="submit" value="TU Dome" name ="search" ></input></li>
+                </form>
+                <form method="GET" action="{% url 'homepage:store_search_place' %}" >
+                    <li><input type="submit" value="Green Canteen" name ="search" ></input></li>
+                </form>
+                <form method="GET" action="{% url 'homepage:store_search_place' %}" >
+                    <li><input type="submit" value="Golf View" name ="search" ></input></li>
+                </form>
+                <form method="GET" action="{% url 'homepage:store_search_place' %}" >
+                    <li><input type="submit" value="Tiw Son Dome" name ="search" ></input></li>
+                </form>
+                <form method="GET" action="{% url 'homepage:store_search_place' %}" >
+                    <li><input type="submit" value="J-Park" name ="search" ></input></li>
+                </form>
+                <form method="GET" action="{% url 'homepage:store_search_place' %}" >
+                    <li><input type="submit" value="JC canteen" name ="search" ></input></li>
+                </form>
+                <form method="GET" action="{% url 'homepage:store_search_place' %}" >
+                    <li><input type="submit" value="SC canteen" name ="search" ></input></li>
+                </form>
+                 <form method="GET" action="{% url 'homepage:store_search_place' %}" >
+                    <li><input type="submit" value="opposite Chiang Rak" name ="search" ></input></li>
+                </form>
             </ul>
         </div>
     <br>
@@ -50,10 +71,10 @@
                 ['Liu Cha', 14.066188389174865, 100.60772080513694],
                 ['Yen Yen Cha', 14.0661760306973, 100.60835447701598],
                 ['Charoenrat Soy Milk', 14.06616367221963, 100.60849529299345],
-                ['Moo Tod Tid Fun', 14.066166484427875, 100.60874402668998], 
+                ['Moo Tod Tid Fun', 14.066166484427875, 100.60874402668998],
                 ['Mong ni Cafe', 14.0659742790523, 100.60922328763043],  //one
                 ['Mini Egg Tart', 14.065825627494695, 100.60969181157343],
-                ['Vietnamese Noodle Soup', 14.065774498910647, 100.60967033755625],  
+                ['Vietnamese Noodle Soup', 14.065774498910647, 100.60967033755625],
                 ['Nai Jod Tom Yum Noodle and Somtum', 14.065962917155005, 100.60985384276913],
                 ['TU Moo Kra Ta', 14.066855877343144, 100.60816965712233],
                 ['BLK Boba', 14.067283829455722, 100.60754714133715],
@@ -64,7 +85,7 @@
                 ['Numba shabu', 14.065789620298357, 100.60559173146085],
                 ['Healthyhouse Cafe', 14.065976396975088, 100.60605347740379],
                 ['Fruit at City Park', 14.065898422265532, 100.60628715448115], //two
-                ['Umai Shabu', 14.066322749443401, 100.60756209670039], 
+                ['Umai Shabu', 14.066322749443401, 100.60756209670039],
                 ['Yum Yum Cafe', 14.065980023707661, 100.60977735550223],
                 ['Yoguruto', 14.066016291008198, 100.6104185654424],
                 ['Yum Lum Yung', 14.066181307139171, 100.61049895036334],
@@ -81,9 +102,9 @@
                 ['Golf View Food Court', 14.061439582971875, 100.59812115319643],
                 ['Rim Khlong kitchen', 14.061943476121368, 100.59669988431334],
                 ['Nam Phol La Mai U Village', 14.06586998532709, 100.59695846689905],
-                ['J-park Grill Chicken', 14.065907114111013, 100.59606535022088],  
+                ['J-park Grill Chicken', 14.065907114111013, 100.59606535022088],
                 ['TU Dome Grill Chicken', 14.065288300299688, 100.60025661912101],
-                ['Gai Wow', 14.0655781058798, 100.60524581630371], 
+                ['Gai Wow', 14.0655781058798, 100.60524581630371],
                 ['Sukhothai Tom Yum Noodle', 14.06920339654757, 100.60482941380698],
                 ['Kao mun GAi JC', 14.069241777303944, 100.60473164677018],
                 ['Kao Kruk Nam Prik JC', 14.069241777303944, 100.60473164677018],
@@ -139,7 +160,8 @@
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAK3RgqSLy1toc4lkh2JVFQ5ipuRB106vU&callback=initMap" async defer></script>
     </div>
 
-    <h1>Store List</h1>
+    <div class="store-head"><h1>Store List</h1></div>
+
     <div class="store-container">
 
         {% for store in stores %}
@@ -154,6 +176,52 @@
 
     </div>
 
+
+
+
+<footer class="container-fluid bg-grey py-5">
+<div class="container">
+   <div class="row">
+      <div class="col-md-6">
+         <div class="row">
+            <div class="col-md-6 ">
+               <div class="logo-part">
+                  <img src="/static/home/img/graylogo.png">
+                  <p>621061 Thammasat U, TH 2021</p>
+                  <p>Make for everyone we hope you enjoy website</p>
+                  <a href="{% url 'about:index' %}" class="btn-footer"  > About us </a><br>
+               </div>
+            </div>
+            <div class="col-md-6 px-4">
+               <h6> About Company</h6>
+               <p>If you have trouble please contact us</p>
+               <p><img src="/static/home/img/lo.png"> 99  Tambon Khlong Nung, Amphoe Khlong <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Luang, Chang Wat Pathum Thani 12121</p>
+               <p><img src="/static/home/img/mail.png"> Eatsleeprepeat.team@gmail.com</p>
+               <p><img src="/static/home/img/phone.png"> <!--Fax : 02868834 -->   &nbsp; 083059244</p>
+           </div>
+         </div>
+      </div>
+      <div class="col-md-6">
+         <div class="row">
+            <div class="col-md-6 px-4">
+               <h6> Other</h6>
+               <div class="row ">
+                  <div class="col-md-6">
+                     <ul>
+                        <li> <a href="#"> Home</a> </li>
+
+                        <li> <a href="{% url 'about:index' %}"> Team</a> </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+
+            </div>
+         </div>
+      </div>
+   </div>
+
+</footer>
 {% endblock %}
 
 </html>

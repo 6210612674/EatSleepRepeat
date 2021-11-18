@@ -48,7 +48,7 @@
 }
 
 .navbar a {
-	
+
   display: block;
   color: #FFEDDC ;
   font-family: 'Sora', sans-serif;
@@ -75,7 +75,7 @@
    background-color: #EE5932 !important;
 }
 
-.d-flex {
+.d-flex form{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -84,7 +84,7 @@
   background-color: white;
   font-family: 'Knewave', cursive;
   width: 100%;
-  max-width: 300px;
+  max-width: 500px;
   position: relative;
 }
 
@@ -171,3 +171,11 @@
 	 left: 12px;
 	 color: #292020;
 }
+
+
+
+
+
+
+
+

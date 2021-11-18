@@ -1,12 +1,16 @@
-{% extends "homepage/layout.html" %}
+{% extends "users/customer_layout.html" %}
 {% load static %}
+<html>
+<style>
 
+</style>
 {% block body %}
-
+<body>
 <link rel="stylesheet" type="text/css" href="{% static '/users/css/sidenav.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static '/users/css/customer_account.css' %}">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 
 {% if messages %}
     <link rel="stylesheet" type="text/css" href="{% static '/users/css/alert.css' %}">
@@ -19,40 +23,19 @@
 
 {% endif %}
 
-<div class ="sidenav-container">
-    <div><button class="button-os"><a href="{% url 'users:customer' %}">My Detail</a></button></div>
-    <div><button class="button-os"><a href="{% url 'users:favourite_view' request.user.username %}">My Favourite</a></button></div>
-    <div><button class="button-os"><a href="{% url 'users:customer_profile' %}">Edit Info</a></button></div>
-    <div><button class="button-os"><a href="{% url 'users:logout' %}">Log out</a></button></div>
-</div>
+
 
 <div class = "info">
     <h1>Welcome, {{ request.user.first_name }} {{ request.user.last_name }}</h1>
-    <p>Username: {{ request.user.username }}</p>
+    <p >Username: {{ request.user.username }}</p>
     <p>Email: {{ request.user.email }}</p>
     <p>Tel: {{ request.user.tel }}</p>
     <p>Gender: {{ request.user.gender }}</p>
     <p>Address: {{ request.user.customer.address }}</p>
 </div>
-
-<!--
-<div class ="img-container">
-        <img src="/static/users/cusimg/irene.jpg">
-</div>
--->
+</body>
 
 
- <!--
- <a href="{% url 'users:customer' %}"><button class="btn btn-primary btn-lg">My Detail</button></a>
-    <a href="{% url 'users:logout' %}"><button class="btn btn-primary btn-lg">logout</button></a>
-    <div class="w3-panel w3-card">
-        <p>Username: {{ request.user.username }}</p>
-        <p>Email: {{ request.user.email }}</p>
-        <p>Sex: {{ request.user.sex }}</p>
-        <p>Address: {{ request.user.customer.address }}</p>
-
-    </div>
-
-   -->
 
 {% endblock %}
+</html>

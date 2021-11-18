@@ -38,15 +38,17 @@ def login_request(request):
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
-            if user is not None :
+            if user is not None:
                 login(request,user)
-                return HttpResponseRedirect(reverse("homepage:index"))
+                if user.is_store:
+                    return HttpResponseRedirect(reverse("users:store"))
+                else:
+                    return HttpResponseRedirect(reverse("homepage:index"))
             else:
                 messages.error(request,"Invalid username or password")
         else:
                 messages.error(request,"Invalid username or password")
     return render(request, '../templates/users/login.html',
-
     context={'form':AuthenticationForm()})
 
 
@@ -76,7 +78,7 @@ def favourite(request, store_user):
         store.favourite.remove(user)
     else:
         store.favourite.add(user)
-    return redirect("homepage:index")
+    return redirect("/")
 
 
 def favourite_view(request, customer_user):

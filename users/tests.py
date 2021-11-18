@@ -107,18 +107,15 @@ class UserViewTestCase(TestCase):
 
     def test_customer_profile_successful(self):
         user = User.objects.get(username='user1')
+        
         c = Client()
         c.force_login(user)
-        # form = UpdateCustomerForm(entry=entry)
-        # form = UpdateCustomerForm(request.POST, entry=entry)
-        # self.assertTrue(form.is_valid())
-        # form.save()
         response = c.post(reverse('users:customer_profile'), {
             'first_name': 'kkk',
         })
         self.assertEqual(response.status_code, 200)
 
-    def test_store_profile(self):
+    def test_store_profile_successful(self):
         userstore = User.objects.get(username="user2")
         store = Store.objects.first()
 

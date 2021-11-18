@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+
+<head>
+
+  <title>Eat Sleep Repeat</title>
+  <link rel="icon" type="image/png" href="/static/home/img/logososmall.png">
+  <link rel="stylesheet" type="text/css" href="{% static '/home/css/nav.css' %}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+    integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
+    crossorigin="anonymous">
+  </script>
+  <link rel="stylesheet" type="text/css" href="{% static '/users/css/sidenav.css' %}">
+
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+
+  <a class="navbar-brand" href="/">
+    <img src="/static/home/img/smallsmall_logo.png">
+  </a>
+
+  <div class="d-flex">
+    <input id="input-search" type="search">
+    <div class="search-box">
+      <p search>search</p>
+    </div>
+  </div>
+
+  {% if user.is_authenticated and user.is_store == False %}
+
+  <div class="textnav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="active"  href="{% url 'users:favourite_view' request.user.username %}"><img src="/static/users/img/heart.png"> Favourite </a>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+          aria-expanded="false"><img src="/static/home/img/usericon.png"> {{ request.user.username }}</a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="{% url 'users:customer' %}"><img src="/static/home/img/userblackicon.png">
+              My account</a></li>
+          <li><a class="dropdown-item" href="{% url 'users:logout' %}"><img src="/static/home/img/logouticon.png"> Logout</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+   {% endif %}
+</nav>
+
+<div class ="sidenav-container">
+  <div><button class="button-os"><a href="{% url 'users:customer' %}">My Detail</a></button></div>
+  <div><button class="button-os"><a href="{% url 'users:favourite_view' request.user.username %}">My Favourite</a></button></div>
+  <div><button class="button-os"><a href="{% url 'users:customer_profile' %}">Edit Info</a></button></div>
+  <div><button class="button-os"><a href="{% url 'users:logout' %}">Log out</a></button></div>
+</div>
+
+<body>
+  {% block body %}
+  {% endblock %}
+</body>
+
+</html>

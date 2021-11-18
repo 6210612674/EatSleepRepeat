@@ -1,57 +1,58 @@
-{% extends "homepage/layout.html" %}
+{% extends "users/customer_layout.html" %}
 {% load static %}
 
 {% block body %}
-<html>
 
-<link rel="stylesheet" type="text/css" href="{% static '/users/css/sidenav.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static '/users/css/customer_account.css' %}">
 
- <div class="row my-3 p-3">
-    </div>
-    {% if user_form.errors %}
-        <div class="alert alert-danger alert-dismissible" role="alert">
-            <div id="form_errors">
-                {% for key, value in user_form.errors.items %}
-                    <strong>{{ value }}</strong>
-                {% endfor %}
-            </div>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    {% endif %}
-    <div class="form-content">
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="form-row">
-                <div class="col-md-5">
-                    <div class="form-group">
-                        <label class="small mb-1">First name:</label>
-                            {{ user_form.first_name }}
-                        <label class="small mb-1">Last name:</label>
-                            {{ user_form.last_name }}
-                        <label class="small mb-1">Email:</label>
-                            {{ user_form.email }}
-                        <label class="small mb-1">Tel:</label>
-                            {{ user_form.tel }}
-                        <label class="small mb-1">Gender:</label>
-                            {{ user_form.gender }}
-                        <label class="small mb-1">Address:</label>
-                            {{ user_form.address }}
-                    </div>
-                    <div class="form-group">
-                        <a href="#">Change Password</a>
-                        <hr>
-                    </div>
+<h2>Personal Info</h2>
+
+<div class="container" id="container">
+    <div class="form-container sign-in-container">
+        {% if user_form.errors %}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <div id="form_errors">
+                    {% for key, value in user_form.errors.items %}
+                        <strong>{{ value }}</strong>
+                    {% endfor %}
                 </div>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <br><br>
-            <button type="submit" class="btn btn-dark btn-lg">Save Changes</button>
-            <button type="reset" class="btn btn-dark btn-lg">Reset</button>
+        {% endif %}
+        
+        <form method="post" enctype="multipart/form-data" id="form-group">
+            {% csrf_token %}
+            <label>First name</label>
+                {{ user_form.first_name }}
+            <label>Last name</label>
+                {{ user_form.last_name }}
+            <label>Email</label>
+                {{ user_form.email }}
+            <label>Tel</label>
+                {{ user_form.tel }}
+            <label>Address</label>
+                {{ user_form.address }}
+            <label>Gender</label>
+                {{ user_form.gender }}
+            <br>
+            
+            <div class="btn-pro">
+                <button type="submit" class="pro">Save Changes</button>
+                <button type="reset" class="pro">Reset</button>
+            </div>
+            
         </form>
-    </div>
+    </div>     
+</div>       
 
 
-</html>
+<!--<div class ="sidenav-container">-->
+<!--    <div><button class="button-os"><a href="{% url 'users:customer' %}">My Detail</a></button></div>-->
+<!--    <div><button class="button-os"><a href="{% url 'users:favourite_view' request.user.username %}">My Favourite</a></button></div>-->
+<!--    <div><button class="button-os"><a href="{% url 'users:customer_profile' %}">Edit Info</a></button></div>-->
+<!--    <div><button class="button-os"><a href="{% url 'users:logout' %}">Log out</a></button></div>-->
+<!--</div>-->
+
 {% endblock %}

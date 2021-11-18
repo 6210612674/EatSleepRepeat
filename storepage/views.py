@@ -2,8 +2,10 @@ from django.shortcuts import render
 from users.models import User, Store, Customer
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect, HttpResponse
+from django.utils import timezone
 from django.urls import reverse
 from homepage.models import *
+
 
 
 # Create your views here.
@@ -29,7 +31,7 @@ def statistic_view(request):
         "count": counter,
 
     })
-    
+
 
 def storeitem(request, store_user):
     store = store_user
