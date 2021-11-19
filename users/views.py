@@ -7,6 +7,7 @@ from django.views.generic import CreateView
 from .form import CustomerSignUpForm, StoreSignUpForm, UpdateCustomerForm, UpdateStoreForm
 from django.contrib.auth.forms import AuthenticationForm
 from .models import User, Customer, Store
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -57,20 +58,17 @@ def logout_view(request):
     return redirect("homepage:index")
 
 
+@login_required(login_url='users:login')
 def customer_view(request):
-    if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse("users:login"))
-
     return render(request, "users/customer_account.html")
 
 
+@login_required(login_url='users:login')
 def store_view(request):
-    if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse("users:login"))
-
     return render(request, "users/store_account.html")
 
 
+@login_required(login_url='users:login')
 def favourite(request, store_user):
     user = User.objects.get(username=request.user.username)
     store = Store.objects.get(user=store_user)
@@ -81,6 +79,7 @@ def favourite(request, store_user):
     return redirect("/")
 
 
+@login_required(login_url='users:login')
 def favourite_view(request, customer_user):
     user = User.objects.get(username=request.user.username)
 
@@ -89,6 +88,7 @@ def favourite_view(request, customer_user):
         })
 
 
+@login_required(login_url='users:login')
 def customer_profile(request):
     if request.method == 'POST':
         user_form = UpdateCustomerForm(request.POST, instance=request.user)
@@ -109,6 +109,7 @@ def customer_profile(request):
     })
 
 
+@login_required(login_url='users:login')
 def store_profile(request):
     if request.method == 'POST':
         user_form = UpdateStoreForm(request.POST, request.FILES, instance=request.user)

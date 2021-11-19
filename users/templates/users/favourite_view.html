@@ -14,8 +14,10 @@
 
   <h1><b>My Favourite Store</b></h1>
     <hr width="500" align="left" size="7" color="red">
+    {% if stores != null %}
     <div class="store-container">
         {% for store in stores %}
+
         <a href="{% url 'storepage:storeitem' store.user_id %}" class="store-link" >
           <div class="box store-list">
             <img src="{{ BASIC_DIR }}/{{ store.store_image }}">
@@ -25,7 +27,12 @@
               </div>
           </div>
         </a>
+
         {% endfor %}
+        
     </div>
+    {%else%}
+       <p>kkk</p>
+    {% endif %}
 </body>
 {% endblock %}

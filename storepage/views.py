@@ -4,24 +4,23 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect, HttpResponse
 from django.utils import timezone
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 from homepage.models import *
 
 
 
 # Create your views here.
 
+@login_required(login_url='users:login')
 def addfood_view(request):
-    if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse("users:login"))
     user = User.objects.get(username=request.user.username)
     return render(request, "storepage/addfood.html",{
         "foods": Food.objects.filter(registered_store=user)
     })
 
 
+@login_required(login_url='users:login')
 def statistic_view(request):
-    if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse("users:login"))
     user = User.objects.get(username=request.user.username)
     counter = Comment.objects.filter(commented_store=user).count()
     viewcount = user.view_count
@@ -46,9 +45,8 @@ def storeitem(request, store_user):
     })
 
 
+@login_required(login_url='users:login')
 def addcomment(request):
-    if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse("users:login"))
 
     if request.method == "POST":
         comuser = request.POST.get("user")
@@ -64,10 +62,8 @@ def addcomment(request):
     return render(request, "storepage/ThankyouC.html")
 
 
+@login_required(login_url='users:login')
 def addfood(request):
-    if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse("users:login"))
-
     user = User.objects.get(username=request.user.username)
     if request.method == "POST":
         food = Food.objects.create(
@@ -83,20 +79,17 @@ def addfood(request):
     return HttpResponseRedirect(reverse("storepage:addfoodview"))
 
 
+@login_required(login_url='users:login')
 def remove(request, F_id):
-    if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse("users:login"))
     Food.objects.filter(F_id=F_id).delete()
 
     return HttpResponseRedirect(reverse("storepage:addfoodview"))
 
 
+@login_required(login_url='users:login')
 def edit(request, F_id):
-    if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse("users:login"))
     food = Food.objects.get(F_id = F_id)
     if request.method == "POST":
-
         food.F_name = request.POST['foodname']
         food.price = request.POST['price']
         food.category = request.POST['type']
@@ -107,9 +100,8 @@ def edit(request, F_id):
     return HttpResponseRedirect(reverse("storepage:addfoodview"))
 
 
+@login_required(login_url='users:login')
 def edit_view(request, F_id):
-    if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse("users:login"))
     return render(request, "storepage/editview.html",{
         "foods": Food.objects.filter(F_id=F_id),
     })

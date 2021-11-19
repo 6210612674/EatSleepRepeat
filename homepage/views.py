@@ -22,7 +22,6 @@ def layout(request):
 
 
 def store_search(request):
-
     if 'search' in request.GET:
         search_term = request.GET['search']
         stores = Store.objects.all().filter(store_name=search_term)
@@ -33,7 +32,6 @@ def store_search(request):
 
 
 def store_search_place(request):
-
     if 'search' in request.GET:
         search_term = request.GET['search']
         stores2 = Store.objects.all().filter(place=search_term)

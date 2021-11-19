@@ -4,7 +4,7 @@ from .models import User, Customer, Store
 # Register your models here.
 
 class StoreAdmin(admin.ModelAdmin):
-    list_display = ("user",)
+    list_display = ("user", "store_name", "verify")
 
 class CustomerAdmin(admin.ModelAdmin):
     list_display = ("user",)

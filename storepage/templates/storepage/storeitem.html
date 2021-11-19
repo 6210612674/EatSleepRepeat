@@ -13,7 +13,14 @@
 <div class="store-title-con">
 
   {% for store in stores %}
-    <h1>{{ store.store_name }}</h1>
+    {% if store.verify == True %}
+      <h1>{{ store.store_name }}  <img src="/static/store/img/verifypng2.png"></h1> 
+      <div class="tooltip">Hover over me
+          <span class="tooltiptext">Tooltip text</span>
+        </div>
+    {% else %}
+      <h1>{{ store.store_name }}</h1>
+    {% endif %}
   {% endfor %}
 
   <a class="btn btn-outline-danger" href="{% url 'users:favourite' store %}" role="button">{{store.user_id}}favorite</a>
@@ -23,15 +30,20 @@
   <!--  <input type="checkbox" onchange="{% url 'users:favourite' store %}">-->
   <!--  <div class="hearth"/>-->
   <!--</label>-->
+  
+  {% for store in stores %}
+    <ul>
+      <li>Status: {{ store.status }}</li>
+      <li>Service time: {{ store.open_time }} - {{ store.close_time }}</li>
+      <li>Type: {{ store.type_store }}</li>
+      <li>Place: {{ store.place }}</li>
+      <li><a class="btn" href="{{ store.location_url }}" role="button"><img src="/static/home/img/lo.png"> GOOGLE MAP</a></li>
+      <li>Description: {{ store.description }}</li>
+      <li><a class="btn" href="{{ store.delivery_link }}" role="button"><img src="/static/home/img/lo.png"> DELIVERY</a></li>
+   
 
-  <ul>
-    <li>Status: {{ request.user.store.status }}</li>
-    <li>Service time: {{ request.user.store.open_time }} - {{ request.user.store.close_time }}</li>
-    <li>Type: {{ request.user.store.type_store }}</li>
-    <li>Place: {{ request.user.store.place }}</li>
-    <li><a class="btn" href="{{ request.user.store.location_url }}" role="button"><img src="/static/home/img/lo.png"> GOOGLE MAP</a></li>
-    <li>Description: {{ request.user.store.description }}</li>
-  </ul>
+    </ul>
+  {% endfor %}
 
 </div>
 
@@ -44,8 +56,9 @@
       <img src="{{ BASIC_DIR }}/{{ food.food_image }}" >
       <div class="text">
         <p>{{ food.F_name }}</p>
-        <p>THB {{ food.price }}</p>
         <p>{{ food.description }}</p>
+        <p>THB {{ food.price }}</p>
+
       </div>
     </div>
     {% endfor %}
@@ -53,6 +66,8 @@
 </div>
 
 </ul>
+
+
 
 <!--<script>storelink = "https://www.foodpanda.co.th/restaurant/waq5/khao-yum-kai-zab-on-nut-market"</script>-->
 <!-- hashflag-gallery - dribbble - twitter -->

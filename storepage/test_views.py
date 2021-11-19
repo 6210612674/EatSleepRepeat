@@ -15,10 +15,10 @@ class StorepageViewTestCase(TestCase):
         usercustomer = User.objects.create(
             username="user2345", password="1234", email="user@example.com", is_customer=True)
         store = Store.objects.create(
-            user = userstore, location = "xxx", store_name = "xxx", type_store  = "xxx", place = "xxx", location_url = "xxx")
+            user = userstore, location = "xxx", store_name = "xxx", type_store  = "xxx", place = "xxx", location_url = "xxx", status = "xxx")
         food.registered_store.add(userstore)
         food.save()
-        comment = Comment.objects.create(comment_name="abc", comment_text="aroi", rating=3)
+        comment = Comment.objects.create(comment_name="abc", comment_text="aroi", rating=3, date = "2021-11-19 12:56:21.959704")
 
 
     def test_index_view_status_code(self):
@@ -72,7 +72,7 @@ class StorepageViewTestCase(TestCase):
     def test_addfoodview_view_page(self):
         userstore = User.objects.create(
             username="userstore1", password="1234", email="user@example.com", is_store=True)
-
+            
         c = Client()
         c.force_login(userstore)
         response = c.get(reverse('storepage:addfoodview'))
@@ -90,7 +90,7 @@ class StorepageViewTestCase(TestCase):
             username="userstore1", password="1234", email="user@example.com", is_store=True)
         c = Client()
         c.force_login(user)
-        with open('static/foodimg/NamTaTok_pcMZE1k.jpg', encoding="utf8", errors='ignore') as fp:
+        with open('static/foodimg/klong.jpg', encoding="utf8", errors='ignore') as fp:
             response = c.post(reverse('storepage:addfood'), {
                 'foodname': 'krapra', 'price': 50.0, 'type': 1, 'foodimage': fp, 'description': 'aaa'})
         self.assertEqual(response.status_code, 302)
@@ -113,7 +113,7 @@ class StorepageViewTestCase(TestCase):
 
         c = Client()
         c.force_login(userstore)
-        with open('static/foodimg/NamTaTok_pcMZE1k.jpg', encoding="utf8", errors='ignore') as pic2:
+        with open('static/foodimg/klong.jpg', encoding="utf8", errors='ignore') as pic2:
             response = c.post(reverse('storepage:edit', args=(food.F_id,)), {
                 'foodname': 'krapra', 'price': 50.0, 'type': 1, 'foodimage': pic2, 'description': 'aaa'})
         self.assertEqual(response.status_code, 302)

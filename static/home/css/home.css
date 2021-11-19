@@ -89,10 +89,6 @@
   text-decoration: none;
 }
 
-
-
-
-
 footer body {
         font-family: 'Signika', sans-serif;
 }
@@ -161,7 +157,7 @@ footer h6:after {
     font-style: italic;
 }
 
- .form-footer input[type="button"] {
+.form-footer input[type="button"] {
     border: none;
     background:#232323;
     margin-left: -5px;
@@ -183,7 +179,7 @@ footer ul li {
     display: block;
 }
 
-  footer ul  {
+footer ul  {
    padding-left: 0;
 }
 
@@ -206,10 +202,28 @@ input[type=submit] {
     cursor: pointer;
     width: 100%;
 }
+
 input[type=submit]:hover {
    color: #E13D20 !important;
     background-color:#FFEDDC
 }
+
 .dropdown-menu {
     width: 200px;
+}
+
+.curve {
+    z-index: -1;
+    width: 3000px;
+    height: 500px;
+    background: url(/static/home/img/curve1.png);
+    background-size: 100% 100%;
+    align-items: center;
+    max-width: 100%;
+}
+
+.curve img {
+    position: absolute;
+    align-items: center;
+    max-width: 100%;
 }
