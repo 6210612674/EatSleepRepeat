@@ -30,36 +30,31 @@
 
 {% endif %}
 
-
-<h1>{{ request.user.store.store_name }}</h1>
-<ul>
-    <li>Username: {{ request.user.username }}</li>
-    <li>Email: {{ request.user.email }}</li>
-    <li>Address: {{ request.user.store.location }}</li>
-    <li>Tel: {{ request.user.tel }}</li>
-
-</ul>
-
-<ul>
-    {% if request.user.store.verify == True %}
-        <li> Verify: Success </li>
-    {% else %}
-        <li> Verify: No </li>
-    {% endif %}
-    <li>Status: {{ request.user.store.status }}</li>
-    <li>Service time: {{ request.user.store.open_time }} - {{ request.user.store.close_time }}</li>
-    <li>Type: {{ request.user.store.type_store }}</li>
-    <li>Place: {{ request.user.store.place }}</li>
-    <li>Location: {{ request.user.store.location_url }}</li>
-    <li>Description: {{ request.user.store.description }}</li>
+<div class="info">
+    <h1>Welcome,{{ request.user.store.store_name }}</h1>
+    <ul>
+         <p>Username: {{ request.user.username }}</p>
+         <p>Email: {{ request.user.email }}</p>
+         <p>Address: {{ request.user.store.location }}</p>
+         <p>Tel: {{ request.user.tel }}</p>
     
-</ul>
+    </ul>
+    
+    <ul>
+        {% if request.user.store.verify == True %}
+             <p> Verify: Success </p>
+        {% else %}
+             <p> Verify: No </p>
+        {% endif %}
+        <p>Status: {{ request.user.store.status }}</p>
+        <p>Service time: {{ request.user.store.open_time }} - {{ request.user.store.close_time }}</p>
+        <p>Type: {{ request.user.store.type_store }}</p>
+        <p>Place: {{ request.user.store.place }}</p>
+        <p>Location: {{ request.user.store.location_url }}</p>
+        <p>Description: {{ request.user.store.description }}</p>
+        
+    </ul>
   
-<h2>Tooltip</h2>
-<p>Move the mouse over the text below:</p>
-
-<div class="tooltip">Hover over me
-  <span class="tooltiptext">Tooltip text</span>
 </div>
 
 

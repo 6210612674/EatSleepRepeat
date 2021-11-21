@@ -2,7 +2,8 @@ from django.test import TestCase, Client
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
-from .models import User, Store
+from .models import User, Store, Customer
+from .form import CustomerSignUpForm, StoreSignUpForm, UpdateCustomerForm, UpdateStoreForm
 
 # Create your tests here.
 
@@ -16,6 +17,9 @@ class UserViewTestCase(TestCase):
             '1234'), email="user2@example.com", is_store=True)
         store = Store.objects.create(
             user = userstore, location = "xxx", store_name = "xxx", type_store  = "xxx", place = "xxx", location_url = "xxx")
+        usercus = User.objects.create(username="user3", password=make_password(
+            '1234'), email="user2@example.com", is_customer=True)
+        cus = Customer.objects.create(user = usercus)
 
     def test_login_view_with_authentication(self):
         c = Client()
@@ -106,12 +110,13 @@ class UserViewTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_customer_profile_successful(self):
-        user = User.objects.get(username='user1')
-        
+        user = User.objects.get(username='user3')
+        cus = Customer.objects.first()
+
         c = Client()
         c.force_login(user)
         response = c.post(reverse('users:customer_profile'), {
-            'first_name': 'kkk',
+            'user': user, 'first_name': 'kkk',
         })
         self.assertEqual(response.status_code, 200)
 
@@ -125,6 +130,3 @@ class UserViewTestCase(TestCase):
             'user': userstore ,'store_name': 'kkk',
         })
         self.assertEqual(response.status_code, 200)
-
-
-

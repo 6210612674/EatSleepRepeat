@@ -2,37 +2,25 @@
 {% load static %}
 
 {% block body %}
-<style>
-    body {
-        font-family: cursive; Comic Sans MS;
-    }
-</style>
-<body>
 
+<link rel="stylesheet" type="text/css" href="{% static '/users/css/fav.css' %}">
 
-  <link rel="stylesheet" type="text/css" href="{% static '/users/css/fav.css' %}">
-
+<div class="favcon">
   <h1><b>My Favourite Store</b></h1>
-    <hr width="500" align="left" size="7" color="red">
-    {% if stores != null %}
+  <hr width="500" align="left" size="7" color="red">
     <div class="store-container">
-        {% for store in stores %}
-
-        <a href="{% url 'storepage:storeitem' store.user_id %}" class="store-link" >
-          <div class="box store-list">
+    {% for store in stores %}
+    <a href="{% url 'storepage:storeitem' store.user_id %}" class="store-link">
+        <div class="store-list">
             <img src="{{ BASIC_DIR }}/{{ store.store_image }}">
-              <h4> {{ store.store_name }}</h4>
-              <div class="overlay">
-                  <div class="text">location :{{ store.place }}</div>
-              </div>
-          </div>
-        </a>
+            <div class="fullcap">
+                {{ store.store_name }}
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+</div>
 
-        {% endfor %}
-        
-    </div>
-    {%else%}
-       <p>kkk</p>
-    {% endif %}
-</body>
+</div>
+
 {% endblock %}

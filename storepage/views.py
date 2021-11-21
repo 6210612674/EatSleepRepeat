@@ -6,6 +6,7 @@ from django.utils import timezone
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from homepage.models import *
+from django.db.models import Avg
 
 
 
@@ -24,11 +25,19 @@ def statistic_view(request):
     user = User.objects.get(username=request.user.username)
     counter = Comment.objects.filter(commented_store=user).count()
     viewcount = user.view_count
+    foods= Food.objects.filter(registered_store=user).count()
+    com = Comment.objects.filter(commented_store=user)
+    avg = Comment.objects.filter(commented_store=user).aggregate(Avg('rating'))['rating__avg']
+    store = Store.objects.get(user=request.user.id)
+    tfav = store.favourite.count()
 
     return render(request, "storepage/statistic.html",{
         "stores": viewcount,
         "count": counter,
-
+        "foods" : foods,
+        "com": com,
+        "avg" : avg,
+        "tfav" : tfav,
     })
 
 

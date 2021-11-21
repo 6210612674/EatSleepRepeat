@@ -1,23 +1,24 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Single+Day&family=Sora:wght@600;700;800&display=swap');
 
 .info  {
-
      padding: 70px 0;
      text-align: center;
-
 }
 
 body{
-	background: url("/static/users/img/bgyel8.png");
+	background: url("/static/users/img/accbg.png");
 	background-size: 100%;
-}
-
+	background-repeat: no-repeat;
+	bottom: 0;
+	
 }
 
 .container {
 	position: relative;
 	width: 400px;
-	height: 800px;
+	height: 600px;
 	max-width: 100%;
 	max-height: 100%;
 }
@@ -36,6 +37,8 @@ form {
 	flex-direction: column;
 	padding: 0 10px;
 	height: 100%;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 4px 4px 6px 8px rgba(217, 217, 217, 0.25);
+	border-radius: 24px;
 }
 
 #form-group input {
@@ -78,6 +81,7 @@ form {
   text-decoration: none;
   gap: 20px;
 }
+/*
 p{
 	font-family: "Comic Sans MS", cursive, sans-serif;
 	font-size: 24px;
@@ -89,4 +93,12 @@ p{
 	font-style: normal;
 	font-variant: normal;
 	text-transform: capitalize;
+}
+*/
+.info p {
+	font-family: 'Single Day', cursive;
+	/*font-family: 'Sora', sans-serif;*/
+}
+.info h1{
+	font-family: 'Single Day', cursive;
 }

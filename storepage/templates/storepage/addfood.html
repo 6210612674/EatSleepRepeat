@@ -5,44 +5,74 @@
 <html>
     <link rel="stylesheet" type="text/css" href="{% static '/store/css/addfood.css' %}">
 
-    <h1>Add Food</h1>
+    <h4>Add Food</h4>
+<div class="container">
+    <div class="form-container sign-in-container">
+        <form method="POST" action="{% url 'storepage:addfood' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label>Food Name:</label>
+            <input type="text" name="foodname" required="required"><br />
+            <label>Price:</label>
+            <input type="number" name="price" required="required"><br />
 
-    <form method="POST" action="{% url 'storepage:addfood' %}" enctype="multipart/form-data">
-        {% csrf_token %}
-        <label>Food Name:</label>
-        <input type="text" name="foodname"><br />
-        <label>Price:</label>
-        <input type="number" name="price"><br />
+                <label for="type">Type:</label>
+                <select name="type" id="type" required="required">
+                <option value="Main">Main</option>
+                <option value="Appetizer">Appetizer</option>
+                <option value="Dessert">Dessert</option>
+                <option value="Drink">Drink</option>
+              </select>
+              <br/>
 
-            <label for="type">Type:</label>
-            <select name="type" id="type">
-            <option value="Main">Main</option>
-            <option value="Appetizer">Appetizer</option>
-            <option value="Dessert">Dessert</option>
-            <option value="Drink">Drink</option>
-          </select>
-          <br/>
+            <label>Food Image</label>
+            <input type="file" name="foodimage" required="required"><br />
 
-        <label>Food Image</label>
-        <input type="file" name="foodimage"><br />
+            <label>Description:</label>
+            <input type="text" name="description"><br />
 
-        <label>Description:</label>
-        <input type="text" name="description"><br />
+            <input type="submit" value="Add" class="apply-button"/>
 
-        <input type="submit" value="Add" class="apply-button"/>
-
-    </form>
+        </form>
+    </div>
+</div>
 
     <ul>
-    <h1> Menu List</h1>
+    <div class="hed">
+    <center>
+    <h2 > Your Menu </h2>
+    </center>
+    </div>
+    <br> </br>
 
-    {% for name in foods %}
+    <!--{% for name in foods %}-->
 
-        <li>{{ name.F_name }}</li>
-        <p><a href="{% url 'storepage:remove' name.F_id %}" class= "btn btn-outline-danger">Remove</a>
-        <a href="{% url 'storepage:edit_view' name.F_id %}" class= "btn btn-outline-danger">Edit</a></p>
+    <!--    <li>{{ name.F_name }}</li>-->
+    <!--    <p><a href="{% url 'storepage:remove' name.F_id %}" class= "btn btn-outline-danger">Remove</a></p>-->
+    <!--    <p><a href="{% url 'storepage:edit_view' name.F_id %}" class= "btn btn-outline-danger">Edit</a></p>-->
 
+    <!--{% endfor %}-->
+
+
+ <div class="menu-list-container">
+    {% for food in foods %}
+    <div class="menu-con">
+        <div class="menu-list">
+          <img src="{{ BASIC_DIR }}/{{ food.food_image }}" >
+            <div class="text">
+                <p>{{ food.F_name }}</p>
+            </div>
+                <p>{{ food.description }}</p>
+                <p>THB {{ food.price }}</p>
+            </div>
+            <div class ="bot">
+                <a class= "botton" href="{% url 'storepage:remove' food.F_id %}">Remove</a>
+                <a class= "botton2" href="{% url 'storepage:edit_view' food.F_id %}">Edit</a>
+            </div>
+        </div>
+    </div>
     {% endfor %}
+  </div>
+
 
     </ul>
 </html>

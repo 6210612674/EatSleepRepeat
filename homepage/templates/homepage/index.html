@@ -1,224 +1,235 @@
- {% extends "homepage/layout.html" %}
- {% load static %}
+{% extends "homepage/layout.html" %}
+{% load static %}
 
 
 <html>
 
-    <head>
-        <title>Eat Sleep Repeat</title>
-    </head>
+<head>
+    <title>Eat Sleep Repeat</title>
+</head>
 
 {% block body %}
 <link rel="stylesheet" type="text/css" href="{% static '/home/css/home.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static '/home/css/nav.css' %}">
 
-<div class ="location-box">
+
+<div class="side-decor"></div>
+<div class="side-left"></div>
+
+
+<div class="location-box">
     <div class="dropdown">
 
         <p>Choose Your Location</p>
 
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">Location</button>
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown"
+            aria-expanded="false">Location</button>
 
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <form method="GET" action="{% url 'homepage:store_search_place' %}" >
-                <li><input type="submit" value="Chiang Rak 1" name ="search"></input></li>
+            <form method="GET" action="{% url 'homepage:store_search_place' %}">
+                <li><input type="submit" value="Chiang Rak 1" name="search"></input></li>
             </form>
-            <form method="GET" action="{% url 'homepage:store_search_place' %}" >
-                <li><input type="submit" value="Chiang Rak 2" name ="search" ></input></li>
+            <form method="GET" action="{% url 'homepage:store_search_place' %}">
+                <li><input type="submit" value="Chiang Rak 2" name="search"></input></li>
             </form>
-            <form method="GET" action="{% url 'homepage:store_search_place' %}" >
-                <li><input type="submit" value="TU Dome" name ="search" ></input></li>
+            <form method="GET" action="{% url 'homepage:store_search_place' %}">
+                <li><input type="submit" value="TU Dome" name="search"></input></li>
             </form>
-            <form method="GET" action="{% url 'homepage:store_search_place' %}" >
-                <li><input type="submit" value="Green Canteen" name ="search" ></input></li>
+            <form method="GET" action="{% url 'homepage:store_search_place' %}">
+                <li><input type="submit" value="Green Canteen" name="search"></input></li>
             </form>
-            <form method="GET" action="{% url 'homepage:store_search_place' %}" >
-                <li><input type="submit" value="Golf View" name ="search" ></input></li>
+            <form method="GET" action="{% url 'homepage:store_search_place' %}">
+                <li><input type="submit" value="Golf View" name="search"></input></li>
             </form>
-            <form method="GET" action="{% url 'homepage:store_search_place' %}" >
-                <li><input type="submit" value="Tiw Son Dome" name ="search" ></input></li>
+            <form method="GET" action="{% url 'homepage:store_search_place' %}">
+                <li><input type="submit" value="Tiw Son Dome" name="search"></input></li>
             </form>
-            <form method="GET" action="{% url 'homepage:store_search_place' %}" >
-                <li><input type="submit" value="J-Park" name ="search" ></input></li>
+            <form method="GET" action="{% url 'homepage:store_search_place' %}">
+                <li><input type="submit" value="J-Park" name="search"></input></li>
             </form>
-            <form method="GET" action="{% url 'homepage:store_search_place' %}" >
-                <li><input type="submit" value="JC canteen" name ="search" ></input></li>
+            <form method="GET" action="{% url 'homepage:store_search_place' %}">
+                <li><input type="submit" value="JC canteen" name="search"></input></li>
             </form>
-            <form method="GET" action="{% url 'homepage:store_search_place' %}" >
-                <li><input type="submit" value="SC canteen" name ="search" ></input></li>
+            <form method="GET" action="{% url 'homepage:store_search_place' %}">
+                <li><input type="submit" value="SC canteen" name="search"></input></li>
             </form>
-             <form method="GET" action="{% url 'homepage:store_search_place' %}" >
-                <li><input type="submit" value="opposite Chiang Rak" name ="search" ></input></li>
+            <form method="GET" action="{% url 'homepage:store_search_place' %}">
+                <li><input type="submit" value="opposite Chiang Rak" name="search"></input></li>
             </form>
         </ul>
     </div>
-<br>
+    <br>
 
-<meta name="viewport" content="initial-scale=1.0">
-<meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
 
-<div id="map"></div>
+    <div id="map"></div>
 
     <script>
-    	var locations = [
-    	    ['Green Canteen', 14.073339900282248, 100.60112539390153],
-            ['TU delivery', 14.069867591472027, 100.59536744508613],
-            ['Ajumma Korean Food', 14.065278747239029, 100.60197052105396],
-            ['Esan Suki', 14.076267962509137, 100.5955213490324],
-            ['Baanyan tree pad mama, fried egg', 14.066218241974447, 100.60663398663272],
-            ['Nai Kriang Noodle', 14.066166674765599, 100.60742688935049],
-            ['Chicken Noodle', 14.066199634947628, 100.60750617373796],
-            ['Liu Cha', 14.066188389174865, 100.60772080513694],
-            ['Yen Yen Cha', 14.0661760306973, 100.60835447701598],
-            ['Charoenrat Soy Milk', 14.06616367221963, 100.60849529299345],
-            ['Moo Tod Tid Fun', 14.066166484427875, 100.60874402668998],
-            ['Mong ni Cafe', 14.0659742790523, 100.60922328763043],  //one
-            ['Mini Egg Tart', 14.065825627494695, 100.60969181157343],
-            ['Vietnamese Noodle Soup', 14.065774498910647, 100.60967033755625],
-            ['Nai Jod Tom Yum Noodle and Somtum', 14.065962917155005, 100.60985384276913],
-            ['TU Moo Kra Ta', 14.066855877343144, 100.60816965712233],
-            ['BLK Boba', 14.067283829455722, 100.60754714133715],
-            ['So Cool', 14.066357203322873, 100.60605160796949],
-            ['Smoothie under Gumgueng', 14.066226641219737, 100.60652457041397],
-            ['Khai Whan Ban Sushi',14.06598265628385, 100.60983814713883],
-            ['Aob Aob the cruashed', 14.06606343848116, 100.60555808194974],
-            ['Numba shabu', 14.065789620298357, 100.60559173146085],
-            ['Healthyhouse Cafe', 14.065976396975088, 100.60605347740379],
-            ['Fruit at City Park', 14.065898422265532, 100.60628715448115], //two
-            ['Umai Shabu', 14.066322749443401, 100.60756209670039],
-            ['Yum Yum Cafe', 14.065980023707661, 100.60977735550223],
-            ['Yoguruto', 14.066016291008198, 100.6104185654424],
-            ['Yum Lum Yung', 14.066181307139171, 100.61049895036334],
-            ['Long Mor Shabu', 14.065617304044592, 100.61041730902662],
-            ['Suki, Khao Pad', 14.06521685782504, 100.60439461649261],
-            ['Nha Mor Tor', 14.065157016570742, 100.60410859576893],
-            ['Side Road Chef', 14.065178777028217, 100.6035571178198],
-            ['Night noodle', 14.065118216575124, 100.60809838878124],
-            ['Somtum Santa', 14.064593640832543, 100.60537405233589],
-            ['Ninetynine Steak', 14.062808153947344, 100.60231256990171],
-            ['Chicken noodle and Somtum front Loft Loft', 14.062011051751725, 100.60242979346275],  //three good
-            ['Ra Biang Nam Golf View', 14.06148082478456, 100.5958542588364],
-            ['Fried Chicken and Yum', 14.061033376499868, 100.59765990083584],
-            ['Golf View Food Court', 14.061439582971875, 100.59812115319643],
-            ['Rim Khlong kitchen', 14.061943476121368, 100.59669988431334],
-            ['Nam Phol La Mai U Village', 14.06586998532709, 100.59695846689905],
-            ['J-park Grill Chicken', 14.065907114111013, 100.59606535022088],
-            ['TU Dome Grill Chicken', 14.065288300299688, 100.60025661912101],
-            ['Gai Wow', 14.0655781058798, 100.60524581630371],
-            ['Sukhothai Tom Yum Noodle', 14.06920339654757, 100.60482941380698],
-            ['Kao mun GAi JC', 14.069241777303944, 100.60473164677018],
-            ['Kao Kruk Nam Prik JC', 14.069241777303944, 100.60473164677018],
-            ['Yum Yu-Pa', 14.06941414317024, 100.60447348415165],  //four
-            ['Nong Am', 14.069464226810986, 100.60468202590877],
-            ['Crepe SC', 14.069804405018935, 100.60466459155003],
-            ['Fried Banana', 14.069817413738987, 100.6046156412339],
-            ['Dek Sen Noodle SC', 14.069738133468592, 100.60466070458496],
-            ['Taiwan Real healthy Boba Tea', 14.07003809224139, 100.60449479598172],
-            ['Snack @ ENGR', 14.069099414595673, 100.6054841306821],
-            ['Pad Mama @ Puey Library', 14.07302612437046, 100.60187303976055],
-            ['Yum Yu-Pa @ Puey Library', 14.07313121866782, 100.60187303976055],
-            ['Indian Food', 14.073797204868297, 100.6011281048996],
-            ['Somtum Evening Canteen', 14.074036035290575, 100.60077389179608],
-            ['Gow Ngao', 14.077523112542215, 100.59641337681713],
-            ['Ma-La Tiw Son', 14.076277789640141, 100.59546393786458],  //five
-
-
+        var locations = [
+            [ 'Green Canteen', 14.073339900282248, 100.60112539390153 ],
+            [ 'TU delivery', 14.069867591472027, 100.59536744508613 ],
+            [ 'Ajumma Korean Food', 14.065278747239029, 100.60197052105396 ],
+            [ 'Esan Suki', 14.076267962509137, 100.5955213490324 ],
+            [ 'Baanyan tree pad mama, fried egg', 14.066218241974447, 100.60663398663272 ],
+            [ 'Nai Kriang Noodle', 14.066166674765599, 100.60742688935049 ],
+            [ 'Chicken Noodle', 14.066199634947628, 100.60750617373796 ],
+            [ 'Liu Cha', 14.066188389174865, 100.60772080513694 ],
+            [ 'Yen Yen Cha', 14.0661760306973, 100.60835447701598 ],
+            [ 'Charoenrat Soy Milk', 14.06616367221963, 100.60849529299345 ],
+            [ 'Moo Tod Tid Fun', 14.066166484427875, 100.60874402668998 ],
+            [ 'Mong ni Cafe', 14.0659742790523, 100.60922328763043 ],  //one
+            [ 'Mini Egg Tart', 14.065825627494695, 100.60969181157343 ],
+            [ 'Vietnamese Noodle Soup', 14.065774498910647, 100.60967033755625 ],
+            [ 'Nai Jod Tom Yum Noodle and Somtum', 14.065962917155005, 100.60985384276913 ],
+            [ 'TU Moo Kra Ta', 14.066855877343144, 100.60816965712233 ],
+            [ 'BLK Boba', 14.067283829455722, 100.60754714133715 ],
+            [ 'So Cool', 14.066357203322873, 100.60605160796949 ],
+            [ 'Smoothie under Gumgueng', 14.066226641219737, 100.60652457041397 ],
+            [ 'Khai Whan Ban Sushi', 14.06598265628385, 100.60983814713883 ],
+            [ 'Aob Aob the cruashed', 14.06606343848116, 100.60555808194974 ],
+            [ 'Numba shabu', 14.065789620298357, 100.60559173146085 ],
+            [ 'Healthyhouse Cafe', 14.065976396975088, 100.60605347740379 ],
+            [ 'Fruit at City Park', 14.065898422265532, 100.60628715448115 ], //two
+            [ 'Umai Shabu', 14.066322749443401, 100.60756209670039 ],
+            [ 'Yum Yum Cafe', 14.065980023707661, 100.60977735550223 ],
+            [ 'Yoguruto', 14.066016291008198, 100.6104185654424 ],
+            [ 'Yum Lum Yung', 14.066181307139171, 100.61049895036334 ],
+            [ 'Long Mor Shabu', 14.065617304044592, 100.61041730902662 ],
+            [ 'Suki, Khao Pad', 14.06521685782504, 100.60439461649261 ],
+            [ 'Nha Mor Tor', 14.065157016570742, 100.60410859576893 ],
+            [ 'Side Road Chef', 14.065178777028217, 100.6035571178198 ],
+            [ 'Night noodle', 14.065118216575124, 100.60809838878124 ],
+            [ 'Somtum Santa', 14.064593640832543, 100.60537405233589 ],
+            [ 'Ninetynine Steak', 14.062808153947344, 100.60231256990171 ],
+            [ 'Chicken noodle and Somtum front Loft Loft', 14.062011051751725, 100.60242979346275 ],  //three good
+            [ 'Ra Biang Nam Golf View', 14.06148082478456, 100.5958542588364 ],
+            [ 'Fried Chicken and Yum', 14.061033376499868, 100.59765990083584 ],
+            [ 'Golf View Food Court', 14.061439582971875, 100.59812115319643 ],
+            [ 'Rim Khlong kitchen', 14.061943476121368, 100.59669988431334 ],
+            [ 'Nam Phol La Mai U Village', 14.06586998532709, 100.59695846689905 ],
+            [ 'J-park Grill Chicken', 14.065907114111013, 100.59606535022088 ],
+            [ 'TU Dome Grill Chicken', 14.065288300299688, 100.60025661912101 ],
+            [ 'Gai Wow', 14.0655781058798, 100.60524581630371 ],
+            [ 'Sukhothai Tom Yum Noodle', 14.06920339654757, 100.60482941380698 ],
+            [ 'Kao mun GAi JC', 14.069241777303944, 100.60473164677018 ],
+            [ 'Kao Kruk Nam Prik JC', 14.069241777303944, 100.60473164677018 ],
+            [ 'Yum Yu-Pa', 14.06941414317024, 100.60447348415165 ],  //four
+            [ 'Nong Am', 14.069464226810986, 100.60468202590877 ],
+            [ 'Crepe SC', 14.069804405018935, 100.60466459155003 ],
+            [ 'Fried Banana', 14.069817413738987, 100.6046156412339 ],
+            [ 'Dek Sen Noodle SC', 14.069738133468592, 100.60466070458496 ],
+            [ 'Taiwan Real healthy Boba Tea', 14.07003809224139, 100.60449479598172 ],
+            [ 'Snack @ ENGR', 14.069099414595673, 100.6054841306821 ],
+            [ 'Pad Mama @ Puey Library', 14.07302612437046, 100.60187303976055 ],
+            [ 'Yum Yu-Pa @ Puey Library', 14.07313121866782, 100.60187303976055 ],
+            [ 'Indian Food', 14.073797204868297, 100.6011281048996 ],
+            [ 'Somtum Evening Canteen', 14.074036035290575, 100.60077389179608 ],
+            [ 'Gow Ngao', 14.077523112542215, 100.59641337681713 ],
+            [ 'Ma-La Tiw Son', 14.076277789640141, 100.59546393786458 ],  //five
         ];
 
         function initMap() {
-    		var mapOptions = {
-    		  center: {lat: 14.067936559787366, lng: 100.601225642732678},
-    		  zoom: 15,
-    		}
+            var mapOptions = {
+                center: { lat: 14.067936559787366, lng: 100.601225642732678 },
+                zoom: 15,
+            }
 
-    		var maps = new google.maps.Map(document.getElementById("map"),mapOptions);
+            var maps = new google.maps.Map(document.getElementById("map"), mapOptions);
 
-    		var marker, i, info;
+            var marker, i, info;
 
-    		for (i = 0; i < locations.length; i++) {
+            for (i = 0; i < locations.length; i++) {
 
-    			marker = new google.maps.Marker({
-    			   position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-    			   map: maps,
-    			   title: locations[i][0]
-    			});
+                marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(locations[ i ][ 1 ], locations[ i ][ 2 ]),
+                    map: maps,
+                    title: locations[ i ][ 0 ]
+                });
 
-    			info = new google.maps.InfoWindow();
+                info = new google.maps.InfoWindow();
 
-    		  google.maps.event.addListener(marker, 'click', (function(marker, i) {
-    			return function() {
-    			  info.setContent(locations[i][0]);
-    			  info.open(maps, marker);
-    			}
-    		  })(marker, i));
+                google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                    return function () {
+                        info.setContent(locations[ i ][ 0 ]);
+                        info.open(maps, marker);
+                    }
+                })(marker, i));
 
-    		}
+            }
 
-    	}
+        }
     </script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAK3RgqSLy1toc4lkh2JVFQ5ipuRB106vU&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAK3RgqSLy1toc4lkh2JVFQ5ipuRB106vU&callback=initMap"
+        async defer></script>
 </div>
 
-<div class="curve"><img src="/static/home/img/txtincurve1.png"></div>
-
-<div class="store-head"><h1>Let's find something to eat!</h1></div>
+<div class="curve">
+    <div class="txtbox"><img src="/static/home/img/txtincurve1.png"></div>
+</div>
 
 <div class="store-container">
     {% for store in stores %}
-        <a href="{% url 'storepage:storeitem' store.user_id %}" class="store-link" >
-          <div class="store-list">
-            <!--{{ store.store_name }}<br>-->
+    <a href="{% url 'storepage:storeitem' store.user_id %}" class="store-link">
+        <div class="store-list">
             <img src="{{ store.store_image }}">
-          </div>
-        </a>
+            <div class="fullcap">
+                {{ store.store_name }}
+            </div>
+        </div>
+    </a>
     {% endfor %}
 </div>
 
 <footer class="container-fluid bg-grey py-5">
-<div class="container">
-   <div class="row">
-      <div class="col-md-6">
-         <div class="row">
-            <div class="col-md-6 ">
-               <div class="logo-part">
-                  <img src="/static/home/img/graylogo.png">
-                  <p>621061 Thammasat U, TH 2021</p>
-                  <p>Make for everyone we hope you enjoy website</p>
-                  <a href="{% url 'about:index' %}" class="btn-footer"  > About us </a><br>
-                  <button class="btn-footer" onclick="alert('Email:  Eatsleeprepeat.team@gmail.com\nService-time : 9.00 am. - 6.00 pm.\nwe will reply to your email as soon as possible.')" >Contect Us</button>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6 ">
+                        <div class="logo-part">
+                            <img src="/static/home/img/graylogo.png">
+                            <p>621061 Thammasat U, TH 2021</p>
+                            <p>Make for everyone we hope you enjoy website</p>
+                            <a href="{% url 'about:index' %}" class="btn-footer"> About us </a><br>
+                            <a class="btn-footer"
+                                onclick="alert('Email:  Eatsleeprepeat.team@gmail.com\nService-time : 9.00 am. - 6.00 pm.\nwe will reply to your email as soon as possible.')">Contect
+                                Us</a>
 
-               </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 px-4">
+                        <h6> About Company</h6>
+                        <p>If you have trouble please contact us</p>
+                        <p><img src="/static/home/img/lo.png"> 99 Tambon Khlong Nung, Amphoe Khlong
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Luang, Chang Wat Pathum Thani 12121
+                        </p>
+                        <p><img src="/static/home/img/mail.png"> Eatsleeprepeat.team@gmail.com</p>
+                        <p><img src="/static/home/img/phone.png">
+                            <!--Fax : 02868834 --> &nbsp; 083059244
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6 px-4">
-               <h6> About Company</h6>
-               <p>If you have trouble please contact us</p>
-               <p><img src="/static/home/img/lo.png"> 99  Tambon Khlong Nung, Amphoe Khlong <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Luang, Chang Wat Pathum Thani 12121</p>
-               <p><img src="/static/home/img/mail.png"> Eatsleeprepeat.team@gmail.com</p>
-               <p><img src="/static/home/img/phone.png"> <!--Fax : 02868834 -->   &nbsp; 083059244</p>
-           </div>
-         </div>
-      </div>
-      <div class="col-md-6">
-         <div class="row">
-            <div class="col-md-6 px-4">
-               <h6> Other</h6>
-               <div class="row ">
-                  <div class="col-md-6">
-                     <ul>
-                        <li> <a href="#"> Home</a> </li>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6 px-4">
+                        <h6> Other</h6>
+                        <div class="row ">
+                            <div class="col-md-6">
+                                <ul>
+                                    <li> <a href="#"> Home</a> </li>
 
-                        <li> <a href="{% url 'about:index' %}"> Team</a> </li>
-                     </ul>
-                  </div>
-               </div>
+                                    <li> <a href="{% url 'about:index' %}"> Team</a> </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            </div>
-         </div>
-      </div>
-   </div>
-
+        </div>
+    </div>
 </footer>
 {% endblock %}
 

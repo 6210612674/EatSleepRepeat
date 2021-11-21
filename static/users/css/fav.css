@@ -1,97 +1,134 @@
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&display=swap');
 
-
-
-body{
+body {
     background: url("/static/users/img/bgfav3.png");
   	background-size: 100%;
+  	font-family: cursive; Comic Sans MS;
 }
 
-.box:hover .overlay {
-  opacity: 1;
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-  opacity: 0;
-  transition: .5s ease;
-  background-color: #FAF3F3;
-  border-radius: 10px;
+.favcon {
+  margin-top: 70px;
 }
 
 .store-container {
-  position: relative;
   display: flex;
   margin: auto;
   width: 1078px;
   align-items: flex-start;
   flex-wrap: wrap;
   text-decoration: none;
-  gap: 20px;
+  justify-content: space-evenly;
+  max-width: 100%;
+  grid-row-gap: 24px;
 }
 
-.box {
-  position: relative;
-  display: inline-block; /* Make the width of box same as image */
-  box-shadow: inset 0px -53px 18px rgba(0, 0, 0, 0.47), inset 0px 5px 18px rgba(0, 0, 0, 0.47);
-}
-
-.box .text{
-  position: absolute;
-  z-index: 999;
-  margin: 0 auto;
-  left: 0;
-  right:50%;
-  top: 40%; /* Adjust this value to move the positioned div up and down */
-  text-align: center;
-  width: 60%; /* Set the width of the positioned div */
+.store-link {
+  text-decoration: none;
+  font-family: 'Sora';
+  color: #fff;
 }
 
 .store-list {
   width: 255px;
   height: 170.33px;
   border-radius: 10px;
+  box-shadow:0 8px 20px 0px rgba(0,0,0,0.125);
+  display: inline-block;
   position: relative;
 }
 
+/* hover */
+@-webkit-keyframes store-list {
+    0% {
+      -webkit-transform: translateY(-8px);
+      transform: translateY(-8px);
+    }
+    50% {
+      -webkit-transform: translateY(-4px);
+      transform: translateY(-4px);
+    }
+    100% {
+      -webkit-transform: translateY(-8px);
+      transform: translateY(-8px);
+    }
+  }
+
+  @keyframes store-list {
+    0% {
+      -webkit-transform: translateY(-8px);
+      transform: translateY(-8px);
+    }
+    50% {
+      -webkit-transform: translateY(-4px);
+      transform: translateY(-4px);
+    }
+    100% {
+      -webkit-transform: translateY(-8px);
+      transform: translateY(-8px);
+    }
+  }
+
+  @-webkit-keyframes store-list-float {
+    100% {
+      -webkit-transform: translateY(-8px);
+      transform: translateY(-8px);
+    }
+  }
+
+  @keyframes store-list-float {
+    100% {
+      -webkit-transform: translateY(-8px);
+      transform: translateY(-8px);
+    }
+  }
+
+.store-list:hover, .store-list:focus, .store-list:active {
+  -webkit-animation-name: store-list-float, store-list;
+  animation-name: store-list-float, store-list;
+  -webkit-animation-duration: .3s, 1.5s;
+  animation-duration: .3s, 1.5s;
+  -webkit-animation-delay: 0s, .3s;
+  animation-delay: 0s, .3s;
+  -webkit-animation-timing-function: ease-out, ease-in-out;
+  animation-timing-function: ease-out, ease-in-out;
+  -webkit-animation-iteration-count: 1, infinite;
+  animation-iteration-count: 1, infinite;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-direction: normal, alternate;
+  animation-direction: normal, alternate;
+}
+
 .store-list img {
-  position: absolute;
-  box-shadow: 2px 2px 6px 5px rgba(210, 210, 210, 0.25);
   border-radius: 10px;
-  width: 255px;
-  height: 170.33px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  position: absolute;
   z-index: -2;
+  box-shadow: 2px 2px 6px 5px rgba(210, 210, 210, 0.25);
 }
 
-.store-list h4 {
-    position: absolute;
-    color: #FFEDDC ;
-    font-family: 'Sora', sans-serif;
-    /*text-align: center;*/
-    text-decoration: none;
-    font-size: 40px;
-    z-index: 100;
+/* overlay on hover  */
+.fullcap {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  text-align: center;
+  font-size: 20px;
+  padding-top: 30%;
+  background-color: rgba(0, 0, 0, 0.25);
+  visibility: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  border-radius: 10px;
 }
 
-.store-list p {
-    position: absolute;
-    color: #FFEDDC;
-    font-family: 'Sora', sans-serif;
-    text-decoration: none;
-    font-size: 20px;
-    z-index: 999;
-    left: 0;
-    bottom: 0;
+.store-list:hover .fullcap {
+  visibility: visible;
+  opacity: 1;
 }
 
 
-.h1{
-    font-family: cursive; Comic Sans MS;
-}

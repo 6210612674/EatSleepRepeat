@@ -1,0 +1,139 @@
+.container-fluid{
+    text-align: center;
+}
+.white-box analytics-info{
+    border : 3px;
+    color:;
+}
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 12px;
+
+    position: absolute;
+    width: 184px;
+    height: 103px;
+    left: 375px;
+    top: 211px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 0px 6px 4px rgba(82, 81, 81, 0.25);
+    border-radius: 15px;
+
+}
+.box2 {
+     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 12px;
+
+    position: absolute;
+    width: 150px;
+    height: 106px;
+    left: 801px;
+    top: 209px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 0px 6px 4px rgba(82, 81, 81, 0.25);
+    border-radius: 15px;
+}
+.box1{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 12px;
+
+    position: absolute;
+    width: 159px;
+    height: 103px;
+    left: 613px;
+    top: 211px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 0px 6px 4px rgba(82, 81, 81, 0.25);
+    border-radius: 15px;
+}
+.box4{
+    position: absolute;
+    width: 613px;
+    height: 140px;
+    left: 375px;
+    top: 340px;
+     padding: 15px 12px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    }
+.box3{
+    position: absolute;
+    width: 613px;
+    height: 101px;
+    left: 375px;
+    top: 490px;
+    padding: 15px 12px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+}
+h1{
+    position: static;
+    height: 28px;
+    left: 12px;
+    top: 15px;
+
+    font-family: Sora;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 28px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 0px;
+}
+.comment{
+    position: absolute;
+    width: 200px;
+    height: 38px;
+    left: 400px;
+    top: 600px;
+
+    background: #E13D20;
+    border-radius: 30px;
+}
+h4{
+    position: center;
+
+    padding: 0px 40px 20px 30px;
+    font-family: Sora;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 30px;
+
+    color: #F3D63B;
+
+}
+.commy{
+    position: absolute;
+    width: 816px;
+    height: 166px;
+    left: 413px;
+    top: 640px;
+
+}
+h2{
+    font-family: Sora;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 45px;
+    color: #000000;
+}
+.star{
+    float:right;
+    padding: 0px 40px 20px 30px;
+}

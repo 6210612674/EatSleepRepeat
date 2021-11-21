@@ -7,7 +7,7 @@
 
 <h2>Personal Info</h2>
 
-<div class="container" id="container">
+<div class="container">
     <div class="form-container sign-in-container">
         {% if user_form.errors %}
             <div class="alert alert-danger alert-dismissible" role="alert">
@@ -28,14 +28,14 @@
                 {{ user_form.first_name }}
             <label>Last name</label>
                 {{ user_form.last_name }}
-            <label>Gender</label>
-                {{ user_form.gender }}
             <label>Email</label>
                 {{ user_form.email }}
             <label>Tel</label>
                 {{ user_form.tel }}
             <label>Address</label>
                 {{ cus_form.address }}
+            <label>Gender</label>
+                {{ user_form.gender }}
             <br>
 
             <div class="btn-pro">
@@ -47,12 +47,5 @@
     </div>
 </div>
 
-
-<!--<div class ="sidenav-container">-->
-<!--    <div><button class="button-os"><a href="{% url 'users:customer' %}">My Detail</a></button></div>-->
-<!--    <div><button class="button-os"><a href="{% url 'users:favourite_view' request.user.username %}">My Favourite</a></button></div>-->
-<!--    <div><button class="button-os"><a href="{% url 'users:customer_profile' %}">Edit Info</a></button></div>-->
-<!--    <div><button class="button-os"><a href="{% url 'users:logout' %}">Log out</a></button></div>-->
-<!--</div>-->
 
 {% endblock %}

@@ -53,6 +53,7 @@ button{
   flex-direction : column;
   justify-content: space-between;
   flex-wrap: wrap;
+  margin: 70px;
 }
 
 .sidenav-container div {
