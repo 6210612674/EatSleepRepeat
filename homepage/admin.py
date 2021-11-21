@@ -6,9 +6,6 @@ from django.contrib.auth.models import User
 from .models import *
 
 
-class OrderAdmin(admin.ModelAdmin):
-    list_display = ("O_id", "amount")
-
 class FoodAdmin(admin.ModelAdmin):
     list_display = ("active", "F_id", "F_name", "price", "category")
 
@@ -18,7 +15,7 @@ class PaymentAdmin(admin.ModelAdmin):
 
 
 
-admin.site.register(Order, OrderAdmin)
+
 admin.site.register(Food, FoodAdmin)
 admin.site.register(Comment)
 

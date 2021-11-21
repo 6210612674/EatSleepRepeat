@@ -26,14 +26,6 @@ class Food (models.Model):
     def __str__(self):
         return  f"{self.F_id} {self.F_name} {self.price} {self.description} {self.category}"
 
-class Order (models.Model):
-
-    O_id = models.CharField(max_length=30)
-    amount = models.DecimalField(default=0.00, decimal_places=2, max_digits=10)
-
-    def __str__(self):
-        return  f"{self.id} {self.O_id} : {self.amount}"
-
 class Comment (models.Model):
 
     commented_store = models.ManyToManyField(User, blank=True, related_name="comstore")
